@@ -1,0 +1,90 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '–g',
+1 verbose cli   'nativescript@1.6.0' ]
+2 info using npm@3.10.5
+3 info using node@v4.4.7
+4 verbose config Skipping project config: /Users/Arthur/.npmrc. (matches userconfig)
+5 error arg Argument starts with non-ascii dash, this is probably invalid: [ '–g', 'nativescript@1.6.0' ]
+6 silly loadCurrentTree Starting
+7 silly install loadCurrentTree
+8 silly install readLocalPackageData
+9 silly fetchPackageMetaData –g
+10 silly fetchPackageMetaData nativescript@1.6.0
+11 silly fetchNamedPackageData nativescript
+12 silly mapToRegistry name nativescript
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry data Result {
+15 silly mapToRegistry   raw: 'nativescript',
+15 silly mapToRegistry   scope: null,
+15 silly mapToRegistry   escapedName: 'nativescript',
+15 silly mapToRegistry   name: 'nativescript',
+15 silly mapToRegistry   rawSpec: '',
+15 silly mapToRegistry   spec: 'latest',
+15 silly mapToRegistry   type: 'tag' }
+16 silly mapToRegistry uri https://registry.npmjs.org/nativescript
+17 silly fetchOtherPackageData –g
+18 silly cache add args [ '–g', null ]
+19 verbose cache add spec –g
+20 silly cache add parsed spec Result {
+20 silly cache add   raw: '–g',
+20 silly cache add   scope: null,
+20 silly cache add   escapedName: null,
+20 silly cache add   name: null,
+20 silly cache add   rawSpec: '–g',
+20 silly cache add   spec: '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g',
+20 silly cache add   type: 'local' }
+21 error addLocal Could not install /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g
+22 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g'
+22 silly fetchPackageMetaData     at Error (native)
+22 silly fetchPackageMetaData  error for –g { [Error: ENOENT: no such file or directory, open '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g']
+22 silly fetchPackageMetaData   errno: -2,
+22 silly fetchPackageMetaData   code: 'ENOENT',
+22 silly fetchPackageMetaData   syscall: 'open',
+22 silly fetchPackageMetaData   path: '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g' }
+23 verbose request uri https://registry.npmjs.org/nativescript
+24 verbose request no auth needed
+25 info attempt registry request try #1 at 8:48:16 PM
+26 verbose request id af72a97a94a99a4f
+27 http request GET https://registry.npmjs.org/nativescript
+28 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+29 info attempt registry request try #2 at 8:48:26 PM
+30 http request GET https://registry.npmjs.org/nativescript
+31 info retry will retry, error on last attempt: TypeError: The header content contains invalid characters
+32 info attempt registry request try #3 at 8:49:26 PM
+33 http request GET https://registry.npmjs.org/nativescript
+34 silly fetchPackageMetaData TypeError: The header content contains invalid characters
+34 silly fetchPackageMetaData     at ClientRequest.OutgoingMessage.setHeader (_http_outgoing.js:351:13)
+34 silly fetchPackageMetaData     at new ClientRequest (_http_client.js:79:14)
+34 silly fetchPackageMetaData     at Object.exports.request (http.js:31:10)
+34 silly fetchPackageMetaData     at Object.socket.once.exports.request (https.js:182:15)
+34 silly fetchPackageMetaData     at Request.start (/usr/local/lib/node_modules/npm/node_modules/request/request.js:753:32)
+34 silly fetchPackageMetaData     at Request.end (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1418:10)
+34 silly fetchPackageMetaData     at end (/usr/local/lib/node_modules/npm/node_modules/request/request.js:580:14)
+34 silly fetchPackageMetaData     at Immediate._onImmediate (/usr/local/lib/node_modules/npm/node_modules/request/request.js:594:7)
+34 silly fetchPackageMetaData     at processImmediate [as _immediateCallback] (timers.js:383:17)
+34 silly fetchPackageMetaData  error for nativescript@1.6.0 [TypeError: The header content contains invalid characters]
+35 silly rollbackFailedOptional Starting
+36 silly rollbackFailedOptional Finishing
+37 silly runTopLevelLifecycles Starting
+38 silly runTopLevelLifecycles Finishing
+39 silly install printInstalled
+40 verbose stack Error: ENOENT: no such file or directory, open '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g'
+40 verbose stack     at Error (native)
+41 verbose cwd /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot
+42 error Darwin 15.3.0
+43 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "–g" "nativescript@1.6.0"
+44 error node v4.4.7
+45 error npm  v3.10.5
+46 error path /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g
+47 error code ENOENT
+48 error errno -2
+49 error syscall open
+50 error enoent ENOENT: no such file or directory, open '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g'
+51 error enoent ENOENT: no such file or directory, open '/Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/–g'
+51 error enoent This is most likely not a problem with npm itself
+51 error enoent and is related to npm not being able to find a file.
+52 verbose exit [ -2, true ]
