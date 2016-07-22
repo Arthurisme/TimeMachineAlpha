@@ -11,15 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var home_component_1 = require('./components/home.component');
 var nav_bar_component_1 = require('./components/nav-bar.component');
+var register_component_1 = require('./components/register.component');
+var router_deprecated_1 = require('@angular/router-deprecated');
+var router_deprecated_2 = require('@angular/router-deprecated');
+var http_1 = require('@angular/http');
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            directives: [nav_bar_component_1.NavBar, home_component_1.HomeComponent],
-            template: "\n    <nav-bar></nav-bar>\n    <home></home>\n    "
-        }), 
+            directives: [nav_bar_component_1.NavBar, home_component_1.HomeComponent, router_deprecated_1.ROUTER_DIRECTIVES],
+            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS],
+            template: "\n    <nav-bar></nav-bar>\n    <router-outlet></router-outlet>\n    "
+        }),
+        router_deprecated_1.RouteConfig([
+            { path: '/home', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
+            { path: '/register', name: 'Register', component: register_component_1.Register },
+        ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;

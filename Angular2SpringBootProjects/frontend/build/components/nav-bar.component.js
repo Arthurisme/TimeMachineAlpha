@@ -9,12 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_deprecated_1 = require("@angular/router-deprecated");
 var NavBar = (function () {
     function NavBar() {
     }
     NavBar = __decorate([
         core_1.Component({
             selector: 'nav-bar',
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             templateUrl: "app/components/nav-bar.component.html"
         }), 
         __metadata('design:paramtypes', [])

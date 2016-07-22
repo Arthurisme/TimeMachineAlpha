@@ -1,0 +1,43 @@
+
+<div class="container">
+
+    <div class="two wide column">
+    </div>
+
+    <div class="fourteen wide column">
+        <div class="ui raise segment">
+            <form class="ui form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+                <h2 class="ui dividing header">Register User</h2>
+                <div class="field">
+                    <label>* Name</label>
+                    <div class="two fields">
+                        <div class="field">
+                            <input type="text" name="firstName" placeholder="First Name" required />
+                        </div>
+                        <div class="field">
+                            <input type="text" name="lastName" placeholder="Last Name" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>* Username/Password</label>
+                    <div class="three fields">
+                        <div class="field">
+                            <input type="text" name="userName" placeholder="User Name" required />
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" placeholder="Password" required />
+                        </div>
+                        <div class="field">
+                            <input type="password" name="password" placeholder="Password Again" required />
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="ui button">Register</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
