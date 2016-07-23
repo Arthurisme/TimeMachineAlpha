@@ -6,6 +6,8 @@ import {Register} from './components/register.component';
 import {RouteConfig,ROUTER_DIRECTIVES} from '@angular/router-deprecated';
 import {ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {HTTP_PROVIDERS} from '@angular/http';
+import {RegisterService} from "./services/register.service";
+
 
 
 
@@ -13,7 +15,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
 @Component({
     selector: 'my-app',
     directives:[NavBar,HomeComponent,ROUTER_DIRECTIVES],
-    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS],
+    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService],
     template: `
     <nav-bar></nav-bar>
     <router-outlet></router-outlet>

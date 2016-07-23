@@ -5,7 +5,365 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2016-07-19T13:44:39Z</updated>
+  <updated>2016-07-20T22:17:43Z</updated>
+  <entry>
+    <title>Spring Web Flow 2.4.4 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/20/spring-web-flow-2-4-4-released" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Rossen Stoyanchev</name>
+    </author>
+    <id>tag:spring.io,2016-07-20:2563</id>
+    <updated>2016-07-20T22:17:43Z</updated>
+    <content type="html">&lt;p&gt;A new Spring Web Flow 2.4.4 maintenance release is now available for download or use from Maven and Gradle builds. This release extends compatibility to Hibernate 5.2 and also includes several mainly JSF related fixes.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Notes on Reactive Programming Part III: A Simple HTTP Server Application</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/20/notes-on-reactive-programming-part-iii-a-simple-http-server-application" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Dave Syer</name>
+    </author>
+    <id>tag:spring.io,2016-07-20:2562</id>
+    <updated>2016-07-20T13:51:00Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;In this article we continue the series on &lt;a href="https://spring.io/blog/2016/06/13/notes-on-reactive-programming-part-ii-writing-some-code"&gt;Reactive Programming&lt;/a&gt;, and the focus is less on learning the basic APIs and more on more concrete use cases and writing code that actually does something useful. We will see how Reactive is a useful abstraction for concurrent programming, but also that it has some very low level features that we should learn to treat with respect and caution. If we start to use these features to their full potential we can take control of layers in our application that previously were invisible, hidden by containers, platforms and frameworks.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="bridging-from-blocking-to-reactive-with-spring-mvc"&gt;&lt;a class="anchor" href="#bridging-from-blocking-to-reactive-with-spring-mvc"&gt;&lt;/a&gt;Bridging from Blocking to Reactive with Spring MVC&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Being Reactive forces you to look at the world differently. Instead of asking for something and getting it (or not getting it), everything is delivered as a sequence (&lt;code&gt;Publisher&lt;/code&gt;) and you have to subscribe to it. Instead of waiting for an answer, you have to register a callback. It&amp;#8217;s not so hard when you get used to it, but unless the whole world turns on its head and becomes Reactive, you are going to find you need to interact with an old-style blocking API&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Suppose we have a blocking method that returns an &lt;code&gt;HttpStatus&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;private RestTemplate restTemplate = new RestTemplate();
+
+private HttpStatus block(int value) {
+    return this.restTemplate.getForEntity("http://example.com", String.class, value)
+            .getStatusCode();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;and we want to call it repeatedly with different arguments and aggregate the results. It&amp;#8217;s a classic "scatter-gather" use case, which you would get, for instance, if you had a paginated back end needed to summarize the "top N" items across multiple pages. Since the details of the non-reactive (blocking) operation are not relevant to the scatter-gather pattern, we can push them down into a method called &lt;code&gt;block()&lt;/code&gt;, and implement it later. Here&amp;#8217;s a (bad) example that calls the back end and aggregates into an object of type &lt;code&gt;Result&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;Flux.range(1, 10) &lt;b class="conum"&gt;(1)&lt;/b&gt;
+    .log()
+    .map(this::block) &lt;b class="conum"&gt;(2)&lt;/b&gt;
+    .collect(Result::new, Result::add) &lt;b class="conum"&gt;(3)&lt;/b&gt;
+    .doOnSuccess(Result::stop) &lt;b class="conum"&gt;(4)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;make 10 calls&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;blocking code here&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;collect results and aggregate into a single object&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;at the end stop the clock (the result is a &lt;code&gt;Mono&amp;lt;Result&amp;gt;&lt;/code&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Don&amp;#8217;t do this at home. It&amp;#8217;s a "bad" example because, while the APIs are technically being used correctly, we know that it is going to block the calling thread; this code is more or less equivalent to a for loop with the call to &lt;code&gt;block()&lt;/code&gt; in the body of the loop. A better implementation would push the call to &lt;code&gt;block()&lt;/code&gt; onto a background thread. We can do that by wrapping it in a method that returns a &lt;code&gt;Mono&amp;lt;HttpStatus&amp;gt;&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;private Mono&amp;lt;HttpStatus&amp;gt; fetch(int value) {
+    return Mono.fromCallable(() -&amp;gt; block(value)) &lt;b class="conum"&gt;(1)&lt;/b&gt;
+        .subscribeOn(this.scheduler);            &lt;b class="conum"&gt;(2)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;blocking code here inside a Callable to defer execution&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;subscribe to the slow publisher on a background thread&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The &lt;code&gt;scheduler&lt;/code&gt; is declared separately as a shared field: &lt;code&gt;Scheduler scheduler = Schedulers.parallel()&lt;/code&gt;. Then we can declare that we want to &lt;code&gt;flatMap()&lt;/code&gt; the sequence instead of using &lt;code&gt;map()&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;Flux.range(1, 10)
+    .log()
+    .flatMap(                             &lt;b class="conum"&gt;(1)&lt;/b&gt;
+        this::fetch, 4)                   &lt;b class="conum"&gt;(2)&lt;/b&gt;
+    .collect(Result::new, Result::add)
+    .doOnSuccess(Result::stop)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;drop down to a new publisher to process in parallel&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;concurrency hint in flatMap&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="embedding-in-a-non-reactive-server"&gt;&lt;a class="anchor" href="#embedding-in-a-non-reactive-server"&gt;&lt;/a&gt;Embedding in a Non-Reactive Server&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If we wanted to run the scatter-gather code above in a non-reactive server like a servlet container, we could use Spring MVC, like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@RequestMapping("/parallel")
+public CompletableFuture&amp;lt;Result&amp;gt; parallel() {
+    return Flux.range(1, 10)
+      ...
+      .doOnSuccess(Result::stop)
+      .toFuture();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you read the Javadocs for &lt;code&gt;@RequestMapping&lt;/code&gt; you will find that a method can return a &lt;code&gt;CompletableFuture&lt;/code&gt; "which the application uses to produce a return value in a separate thread of its own choosing". The separate thread in this case is provided by "scheduler", which is a thread pool, so the processing is happening on multiple threads, 4 at a time because of the way that &lt;code&gt;flatMap()&lt;/code&gt; is called.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="no-such-thing-as-a-free-lunch"&gt;&lt;a class="anchor" href="#no-such-thing-as-a-free-lunch"&gt;&lt;/a&gt;No Such Thing as a Free Lunch&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The scatter-gather with a background thread is a useful pattern but it isn&amp;#8217;t perfect&amp;#8201;&amp;#8212;&amp;#8201;it&amp;#8217;s not blocking the caller, but it&amp;#8217;s blocking something, so it&amp;#8217;s just moving the problem around. There are some practical implications. We have an HTTP server with (probably) non-blocking IO handlers, passing work back to a thread pool, one HTTP request per thread&amp;#8201;&amp;#8212;&amp;#8201;all of this is happening inside a servlet container (e.g. Tomcat). The request is processed asynchronously, so the worker thread in Tomcat isn&amp;#8217;t blocked, and the thread pool that we created in our "scheduler" is processing on up to 4 concurrent threads. We are processing 10 back end requests (calls to &lt;code&gt;block()&lt;/code&gt;) so there is a maximum, theoretical benefit of using the scheduler of 4 times lower latency. In other words, if processing all 10 requests one after the other in a single thread takes 1000ms, we might see a processing time of 250ms for a single incoming request at our HTTP service. We should emphasise the "might" though: it&amp;#8217;s only going to go that fast if there is no contention for the processing threads (in both stages, the Tomcat workers, and the application scheduler). If you have a server with a large number of cores, very low concurrency, i.e. a small number of clients connecting to your application, and hardly any chance that two will make a request at the same time, then you will probably see close to the theoretical improvement. As soon as there are multiple clients trying to connect, they will all be competing for the same 4 threads, and the latency will drift up, and could even be worse than that experienced by a single client with no background processing. We can improve the latency for concurrent clients by creating the scheduler with a larger thread pool, e.g.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;    private Scheduler scheduler = Schedulers.newParallel("sub", 16);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;(16 threads.) Now we are using more memory for the threads and their stacks, and we can expect to see lower latency for low concurrency, but not necessarily for high concurrency if our hardware has fewer than 16 cores. We also do not expect higher throughput under load: if there is contention for the threads, there is a high cost for managing those resources and that has to be reflected somwehere in a metric that matters. If you are interested in more detailed analysis of that kind of trade off, some detailed analyses of how performance metrics scale under load can be found in a blog series by &lt;a href="https://robharrop.github.io/"&gt;Rob Harrop&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock tip"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Tip&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Tomcat allocates 100 threads for processing HTTP requests by default. That is excessive if we know all the processing is going to be on our scheduler thread pool. There is an impedance mismatch: the scheduler thread pool can be a bottleneck because it has fewer threads than the upstream Tomcat thread pool. This highlights the fact that performance tuning can be very hard, and, while you might have control of all the configuration, it&amp;#8217;s a delicate balance.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We can do better than a fixed thread pool if we use a scheduler that adjusts its capacity according to demand. Reactor has a convenience for that, so if you try the same code with &lt;code&gt;Schedulers.elastic()&lt;/code&gt; (you can call it anywhere; there is only one instance), you will see that under load more threads are created.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="reactive-all-the-way-down"&gt;&lt;a class="anchor" href="#reactive-all-the-way-down"&gt;&lt;/a&gt;Reactive all the Way Down&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The bridge from blocking to reactive is a useful pattern, and is easy to implement using available technology in Spring MVC (as shown above). The next stage in the Reactive journey is to break out of blocking in application threads completely, and to do that requires new APIs and new tools. Ultimately we have to be Reactive all the way down the stack, including servers and clients. This is the goal of Spring Reactive, which is a new framework, orthogonal to Spring MVC, but meeting the same needs, and using a similar programming model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Spring Reactive started as a standalone project, but is folded into the Spring Framework in version 5.0 (first milestone June 2016).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The first step to fully Reactive in our scatter-gather example would be to replace &lt;code&gt;spring-boot-starter-web&lt;/code&gt; with &lt;code&gt;spring-boot-starter-web-reactive&lt;/code&gt; on the classpath. In Maven:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;dependency&amp;gt;
+	&amp;lt;groupId&amp;gt;org.springframework.boot.experimental&amp;lt;/groupId&amp;gt;
+	&amp;lt;artifactId&amp;gt;spring-boot-starter-web-reactive&amp;lt;/artifactId&amp;gt;
+	&amp;lt;version&amp;gt;0.1.0-SNAPSHOT&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;or in Gradle:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-groovy" data-lang="groovy"&gt;repositories {
+    ...
+    mavenLocal()
+}
+
+
+dependencies {
+	compile('org.springframework.boot.experimental:spring-boot-starter-web-reactive:0.1.0-SNAPSHOT')
+    ...
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;(At the time of writing there are snapshots of this experimental library in repo.spring.io, or you could build and install locally from &lt;a href="https://github.com/bclozel/spring-boot-reactive-web"&gt;GitHub&lt;/a&gt;.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Then in the controller, we can simply lose the bridge to &lt;code&gt;CompletableFuture&lt;/code&gt; and return an object of type &lt;code&gt;Mono&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@RequestMapping("/parallel")
+public Mono&amp;lt;Result&amp;gt; parallel() {
+    return Flux.range(1, 10)
+            .log()
+            .flatMap(this::fetch, 4)
+            .collect(Result::new, Result::add)
+            .doOnSuccess(Result::stop);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Take this code and put it in a Spring Boot application and it will run in Tomcat, Jetty or Netty, depending on what it finds on the classpath. Tomcat is the default server in that starter, so you have to exclude it and provide a different one if you want to switch. All three have very similar characteristics in terms of startup time, memory usage and runtime resource usage.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We still have the blocking backend call in &lt;code&gt;block()&lt;/code&gt;, so we still have to subscribe on a thread pool to avoid blocking the caller. We can change that if we have a non-blocking client, e.g. instead of using &lt;code&gt;RestTemplate&lt;/code&gt; we use the new &lt;code&gt;WebClient&lt;/code&gt; then we might do this instead to use a non-blocking client:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;private WebClient client = new WebClient(new ReactorHttpClientRequestFactory());
+
+private Mono&amp;lt;HttpStatus&amp;gt; fetch(int value) {
+    return this.client.perform(HttpRequestBuilders.get("http://example.com"))
+            .extract(WebResponseExtractors.response(String.class))
+            .map(response -&amp;gt; response.getStatusCode());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Note that the &lt;code&gt;WebClient.perform()&lt;/code&gt; (or the &lt;code&gt;WebResponseExtractor&lt;/code&gt; to be precise) has a Reactive return type, which we have transformed into a &lt;code&gt;Mono&amp;lt;HttpStatus&amp;gt;&lt;/code&gt;, but we have not subscribed to it. We want the framework to do all the subscribing, so now we are Reactive all the way down.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock warning"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Warning&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+Methods in Spring Reactive that return a &lt;code&gt;Publisher&lt;/code&gt; &lt;strong&gt;are&lt;/strong&gt; non-blocking, but in general a method that returns a &lt;code&gt;Publisher&lt;/code&gt; (or &lt;code&gt;Flux&lt;/code&gt;, &lt;code&gt;Mono&lt;/code&gt; or &lt;code&gt;Observable&lt;/code&gt;) is only a hint that it might be non-blocking. If you are writing such methods it is important to analyse (and preferably test) whether they block, and to let callers know explicitly if they might do.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+The trick we played just now of using a non-blocking client to simplify the HTTP stack works in regular Spring MVC as well. The result of the &lt;code&gt;fetch()&lt;/code&gt; method above can be converted to a &lt;code&gt;CompletableFuture&lt;/code&gt; and passed out of a regular &lt;code&gt;@RequestMapping&lt;/code&gt; method (in Spring Boot 1.3 for instance).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="inversion-of-control"&gt;&lt;a class="anchor" href="#inversion-of-control"&gt;&lt;/a&gt;Inversion of Control&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Now we can remove the concurrency hint after the call to &lt;code&gt;fetch()&lt;/code&gt; in the HTTP request handler:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@RequestMapping("/netty")
+public Mono&amp;lt;Result&amp;gt; netty() {
+    return Flux.range(1, 10) &lt;b class="conum"&gt;(1)&lt;/b&gt;
+        .log() //
+        .flatMap(this::fetch) &lt;b class="conum"&gt;(2)&lt;/b&gt;
+        .collect(Result::new, Result::add)
+        .doOnSuccess(Result::stop);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;make 10 calls&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;drop down to a new publisher to process in parallel&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Taking into account that we don&amp;#8217;t need the extra callable and subscriber thread at all, this code is a lot cleaner than when we had to bridge to the blocking client, which can be attributed to the fact that the code is Reactive all the way down. The Reactive &lt;code&gt;WebClient&lt;/code&gt; returns a &lt;code&gt;Mono&lt;/code&gt;, and that drives us immediately to select &lt;code&gt;flatMap()&lt;/code&gt; in the transformation chain, and the code we need just falls out. It&amp;#8217;s a nicer experience to write it, and it&amp;#8217;s more readable, so it&amp;#8217;s easier to maintain. Also, since there is no thread pooling and no concurrency hint, there is no magic factor of 4 to plug into our performance expectations. There is a limit somewhere, but it&amp;#8217;s not imposed by our choices in the application tier any more, nor is it limited by anything in the server "container". It&amp;#8217;s not magic, and there are still laws of physics, so the backend calls are all still going to take 100ms or so each, but with low contention we might even see all 10 requests complete in roughly the same time it takes for one. As the load on the server increases latency and throughput will naturally degrade, but in a way that is governed by buffer contention and kernel networking, not by application thread management. It&amp;#8217;s an inversion of control, to lower levels of the stack below the application code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Remember the same application code runs on Tomcat, Jetty or Netty. Currently, the Tomcat and Jetty support is provided on top of Servlet 3.1 asynchronous processing, so it is limited to one request per thread. When the same code runs on the Netty server platform that constraint is lifted, and the server can dispatch requests sympathetically to the web client. As long as the client doesn&amp;#8217;t block, everyone is happy. Performance metrics for the netty server and client probably show similar characteristics, but the Netty server is not restricted to processing a single request per thread, so it doesn&amp;#8217;t use a large thread pool and we might expect to see some differences in resource utilization. We will come back to that later in another article in this series.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock tip"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Tip&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+in the &lt;a href="https://github.com/dsyer/reactive-notes"&gt;sample code&lt;/a&gt; the "reactive" sample has Maven profiles "tomcat", "tomcatNext" (for Tomcat 8.5), "jetty" and "netty", so you can easily try out all the different server options without changing a line of code.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+the blocking code in many applications is not HTTP backend calls, but database interactions. Very few databases support non-blocking clients at this point in time (MongoDB and Couchbase are notable exceptions, but even those are not as mature as the HTTP clients). Thread pools and the blocking-to-reactive pattern will have a long life until all the database vendors catch up on the client side.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="still-no-free-lunch"&gt;&lt;a class="anchor" href="#still-no-free-lunch"&gt;&lt;/a&gt;Still No Free Lunch&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We have whittled down our basic scatter-gather use case until the code is very clean, and very sympathetic to the hardware it runs on. We wrote some simple code and it was stacked up and orchestrated very nicely into a working HTTP service using Spring. On a sunny day everyone is more than happy with the outcome. But as soon as there are errors, e.g. a badly behaved network connection, or a back end service that suffers from poor latency, we are going to suffer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The first, most obvious way to suffer is that the code we wrote is declarative, so it&amp;#8217;s hard to debug. When errors occur the diagnostics can be very opaque. Using the raw, low-level APIs, like Reactor without Spring, or even down to the level of Netty without Reactor would probably make it even worse, because then we would have to build a lot of error handling ourselves, repeating the boiler plate every time we interact with the network. At least with Spring and Reactor in the mix we can expect to see stack traces logged for stray, uncaught exceptions. They might not be easy to understand though because they happen on threads that we don&amp;#8217;t control, and they sometimes show up as quite low level concerns, from unfamiliar parts of the stack.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Another source of pain is that if we ever make a mistake and block in one of our Reactive callbacks, we will be holding up &lt;strong&gt;all&lt;/strong&gt; requests on the same thread. With the servlet-based containers every request is isolated to a thread, and blocking doesn&amp;#8217;t hold up other requests because they are be processed on different threads. Blocking all requests is still a recipe for trouble, but it only shows up as increased latency with roughly a constant factor per request. In the Reactive world, blocking a single request can lead to increased latency for all requests, and blocking all requests can bring a server to its knees because the extra layers of buffers and threads are not there to take up the slack.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="conclusion"&gt;&lt;a class="anchor" href="#conclusion"&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;It&amp;#8217;s nice to be able to control all the moving parts in our asynchronous processing: every layer has a thread pool size and a queue. We can make some of those layers elastic, and try and adjust them according to how much work they do. But at some point it becomes a burden, and we start looking for something simpler, or leaner. Analysis of scalability leads to the conclusion that it is often better to shed the extra threads, and work with the constraints imposed by the physical hardware. This is an example of "mechanical sympathy", as is famously exploited by LMAX to great effect in the &lt;a href="https://lmax-exchange.github.io/disruptor/"&gt;Disruptor Pattern&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We have begun to see the power of the Reactive approach, but remember that with power comes responsibility. It&amp;#8217;s radical, and it&amp;#8217;s fundamental. It&amp;#8217;s "rip it up and start again" territory. So you will also hopefully appreciate that Reactive isn&amp;#8217;t a solution to all problems. In fact it isn&amp;#8217;t a solution to any problem, it merely facilitates the solution of a certain class of problems. The benefits you get from using it might be outweighed by the costs of learning it, modifying your APIs to be Reactive all the way down, and maintaining the code afterwards, so tread carefully.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>This Week in Spring - July 19th, 2016</title>
     <link rel="alternate" href="https://spring.io/blog/2016/07/19/this-week-in-spring-july-19th-2016" />
@@ -697,89 +1055,5 @@ The current &lt;code&gt;1.2&lt;/code&gt; version will be still supported, but ju
     <content type="html">&lt;p&gt;Right after &lt;a href="https://spring.io/blog/2016/07/04/spring-framework-4-3-1-and-4-2-7-available-now"&gt;Spring Framework 4.2.7&lt;/a&gt;, Spring Boot 1.3.6 has been released and is available now from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;This maintenance release includes a &lt;a href="https://github.com/spring-projects/spring-boot/issues?q=milestone%3A1.3.6+is%3Aclosed"&gt;number of fixes&lt;/a&gt; and 3rd party dependency updates.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Framework 4.3.1 and 4.2.7 available now</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/07/04/spring-framework-4-3-1-and-4-2-7-available-now" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Stéphane Nicoll</name>
-    </author>
-    <id>tag:spring.io,2016-07-04:2542</id>
-    <updated>2016-07-04T11:16:16Z</updated>
-    <content type="html">&lt;p&gt;It is my pleasure to announce that the Spring Framework &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=15568"&gt;4.3.1&lt;/a&gt; and &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=15567"&gt;4.2.7&lt;/a&gt; maintenance releases &lt;a href="http://projects.spring.io/spring-framework"&gt;are available now&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;The first maintenance release of the 4.3 line contains 40 fixes and improvements and is the base for the upcoming Spring Boot 1.4 release. The master branch has now switched to 5.0 and we&amp;rsquo;ll start merging 5.0 features in preparation for &lt;code&gt;5.0.0.M1&lt;/code&gt; later this month.&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-framework/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/SPR"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/htmlsingle/"&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For more details about Spring Framework 4.3, check &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions/modern_java_component_design_with_spring_framework_4_3.html"&gt;Juergen Hoeller&amp;rsquo;s session&lt;/a&gt; at &lt;a href="http://springoneplatform.io"&gt;SpringOne Platform&lt;/a&gt;, which is taking place in Las Vegas between August 1-4 this year. There are many other great talks so &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions"&gt;check the agenda&lt;/a&gt; and &lt;a href="https://2016.event.springoneplatform.io/register"&gt;get your ticket&lt;/a&gt; if you haven’t done so already.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring for Apache Kafka 1.0 and Spring Integration Kafka 2.0 go GA</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/07/04/spring-for-apache-kafka-1-0-and-spring-integration-kafka-2-0-go-ga" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Artem Bilan</name>
-    </author>
-    <id>tag:spring.io,2016-07-01:2540</id>
-    <updated>2016-07-04T05:00:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;I&amp;#8217;m pleased to announce that the &lt;code&gt;spring-kafka&lt;/code&gt; (Spring for Apache Kafka) &lt;code&gt;1.0 GA&lt;/code&gt; and  Spring Integration Kafka &lt;code&gt;2.0 GA&lt;/code&gt; are available finally!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The artifacts &lt;code&gt;org.springframework.kafka:spring-kafka:1.0.0.RELEASE&lt;/code&gt; and &lt;code&gt;org.springframework.kafka:spring-kafka-test:1.0.0.RELEASE&lt;/code&gt; are available in the &lt;a href="https://repo.spring.io/release/"&gt;Release&lt;/a&gt; repository and Maven Central, respectively.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In addition &lt;code&gt;org.springframework.integration:spring-integration-kafka:2.0.0.RELEASE&lt;/code&gt;, fully based on the &lt;code&gt;spring-kafka-1.0.0.RELEASE&lt;/code&gt;, is available at the same repositories as well.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="admonitionblock important"&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class="icon"&gt;
-&lt;div class="title"&gt;Important&lt;/div&gt;
-&lt;/td&gt;
-&lt;td class="content"&gt;
-Just after release we figured out a &lt;a href="https://github.com/spring-projects/spring-kafka/issues/135"&gt;nasty bug&lt;/a&gt; with unacked offset commits for &lt;code&gt;RECORD&lt;/code&gt; mode.
-Special thanks to &lt;a href="https://github.com/adamdec"&gt;Adam Dec&lt;/a&gt;!
-So, please, meet &lt;code&gt;spring-kafka:1.0.1.RELEASE&lt;/code&gt; as well.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Of course, many thanks to everyone involved, to active community members, who provided feature requests and contributions.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;There have been some reworks and bug fixes since the &lt;a href="https://spring.io/blog/2016/06/07/spring-for-apache-kafka-1-0-release-candidate-1-available"&gt;Release Candidate 1&lt;/a&gt; including:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;rework for Manual AckMode, which indicate as a breaking change though, because the &lt;code&gt;MANUAL_IMMEDIATE_SYNC&lt;/code&gt; mode has been removed;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;the &lt;code&gt;ackTime&lt;/code&gt; has now 5 seconds as default value. The same as Kafka default &lt;code&gt;auto.commit.interval.ms&lt;/code&gt;;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;the &lt;code&gt;ackCount&lt;/code&gt; must be &lt;code&gt;&amp;gt; 0&lt;/code&gt; in case of &lt;code&gt;COUNT&lt;/code&gt; and &lt;code&gt;COUNT_TIME&lt;/code&gt; mode;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;a new Spring Integration Kafka support chapter in the Reference Manual.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See also the &lt;a href="http://docs.spring.io/spring-kafka/docs/1.0.0.RELEASE/reference/htmlsingle/"&gt;Reference Manual&lt;/a&gt; for more information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="next-steps" class="sect0"&gt;&lt;a class="anchor" href="#next-steps"&gt;&lt;/a&gt;Next Steps&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We expect to release the Milestone 1 for version 1.1 enough soon, which will support Kafka 0.10, include some Spring Boot auto configuration and actuator endpoint and much more!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-kafka/"&gt;Project Page&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-kafka/docs/1.0.0.RELEASE/reference/htmlsingle/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-kafka/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-integration"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="spring-one-platform" class="sect0"&gt;&lt;a class="anchor" href="#spring-one-platform"&gt;&lt;/a&gt;Spring One Platform&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/team/grussell"&gt;Gary Russell&lt;/a&gt; will be talking about &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions/spring_for_apache_kafka.html"&gt;Spring for Apache Kafka&lt;/a&gt; at &lt;a href="http://springoneplatform.io"&gt;Spring One Platform&lt;/a&gt;, which is taking place in Las Vegas between August 1-4 this year.
-There are many other great talks so &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions"&gt;check the agenda&lt;/a&gt; and &lt;a href="https://2016.event.springoneplatform.io/register"&gt;get your ticket&lt;/a&gt; if you haven’t done so already.&lt;/p&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>

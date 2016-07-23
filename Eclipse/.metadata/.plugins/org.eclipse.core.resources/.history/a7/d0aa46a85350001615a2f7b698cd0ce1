@@ -1,0 +1,5 @@
+package com.sensoryex.backend.service.impl;
+
+public class UserServiceImpl {
+
+}

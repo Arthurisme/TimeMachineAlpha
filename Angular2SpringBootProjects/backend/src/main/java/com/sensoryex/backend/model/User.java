@@ -1,7 +1,8 @@
 package com.sensoryex.backend.model;
 
-import java.sql.Date;
-//import java.util.List;
+
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,12 +15,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
-   
 
- 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+
 @Entity
 public class User {
-
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,11 +34,12 @@ public class User {
 	@CreationTimestamp
 	private Date created;
 	
-	@OneToMany(mappedBy ="user", cascade=CascadeType.ALL, fetch= FetchType.EAGER)
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Photo> photoList;
 	
 	@ManyToMany
-	private List<Photo> LikedPhotoList;
+	private List<Photo> likedPhotoList;
 
 	public Long getUserId() {
 		return userId;
@@ -95,13 +98,12 @@ public class User {
 	}
 
 	public List<Photo> getLikedPhotoList() {
-		return LikedPhotoList;
+		return likedPhotoList;
 	}
 
 	public void setLikedPhotoList(List<Photo> likedPhotoList) {
-		LikedPhotoList = likedPhotoList;
+		this.likedPhotoList = likedPhotoList;
 	}
-	
 	
 	
 }

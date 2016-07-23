@@ -15,6 +15,7 @@ var register_component_1 = require('./components/register.component');
 var router_deprecated_1 = require('@angular/router-deprecated');
 var router_deprecated_2 = require('@angular/router-deprecated');
 var http_1 = require('@angular/http');
+var register_service_1 = require("./services/register.service");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -22,7 +23,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [nav_bar_component_1.NavBar, home_component_1.HomeComponent, router_deprecated_1.ROUTER_DIRECTIVES],
-            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS],
+            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, register_service_1.RegisterService],
             template: "\n    <nav-bar></nav-bar>\n    <router-outlet></router-outlet>\n    "
         }),
         router_deprecated_1.RouteConfig([

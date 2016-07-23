@@ -1,0 +1,5 @@
+package com.sensoryex.backend.dao;
+
+public interface UserDao {
+
+}
