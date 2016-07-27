@@ -1,0 +1,8 @@
+package com.sensoryex.backend.service;
+
+import com.sensoryex.backend.model.Photo;
+
+public interface PhotoService {
+
+ 
+}

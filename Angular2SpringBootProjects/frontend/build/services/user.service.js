@@ -15,7 +15,7 @@ var UserService = (function () {
         this.http = http;
     }
     UserService.prototype.getUserByName = function (username) {
-        var url = "http://localhost:8080/rest/user/username";
+        var url = "http://localhost:8080/rest/user/userName";
         var header = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
         return this.http.post(url, username, { headers: header });
     };

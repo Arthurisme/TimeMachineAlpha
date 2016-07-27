@@ -35,7 +35,7 @@ public class Photo {
 	private Date created;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonBackReference
 	private User user;
 	
 	private int likes;

@@ -14,7 +14,7 @@ var PhotoService = (function () {
     function PhotoService(http) {
         this.http = http;
     }
-    PhotoService.prototype.getPhotoByUser = function (user) {
+    PhotoService.prototype.getPhotosByUser = function (user) {
         var url = "http://localhost:8080/rest/photo/user";
         var header = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
         return this.http.post(url, JSON.stringify(user), { headers: header });

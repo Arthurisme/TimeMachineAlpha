@@ -2,18 +2,22 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="201607251312" key="selection"/>
+		<item value="test path" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="test path"/>
+			<item value="main/resources"/>
+			<item value="productImage"/>
 			<item value="201607251312"/>
 			<item value="JwtFilter"/>
 			<item value="201607251312201607251312"/>
 			<item value="Message logged at DEBUG level"/>
 		</list>
 		<list key="replacehistory">
+			<item value="multipartFile"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

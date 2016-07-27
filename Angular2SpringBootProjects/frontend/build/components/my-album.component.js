@@ -21,7 +21,10 @@ var MyAlbum = (function () {
         this.userService = userService;
         this.userService.getUserByName(localStorage.getItem("currentUserName")).subscribe(function (user) {
             _this.user = JSON.parse(JSON.parse(JSON.stringify(user))._body);
-            _this.photoService.getPhotoByUser(_this.user).subscribe(function (photos) { _this.photos = JSON.parse(JSON.parse(JSON.stringify(user))._body).photoList; }),
+            _this.photoService.getPhotosByUser(_this.user).subscribe(function (photos) {
+                _this.photos = JSON.parse(JSON.parse(JSON.stringify(user))._body).photoList;
+                console.log("test photos list in front end: " + _this.photos);
+            }),
                 function (error) { return console.log(error); };
         }),
             function (error) { return console.log(error); };

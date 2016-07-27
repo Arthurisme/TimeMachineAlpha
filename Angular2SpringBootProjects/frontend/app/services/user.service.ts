@@ -9,7 +9,7 @@ export  class UserService{
     constructor (private http:Http){}
 
     getUserByName(username: string){
-        let url = "http://localhost:8080/rest/user/username";
+        let url = "http://localhost:8080/rest/user/userName";
         let header = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer '+localStorage.getItem("token")});
 
         return this.http.post(url, username, {headers:header} );

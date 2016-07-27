@@ -25,10 +25,14 @@ var AddPhoto = (function () {
         var _this = this;
         this.userService.getUserByName(localStorage.getItem("currentUserName")).subscribe(function (user) {
             _this.user = JSON.parse(JSON.parse(JSON.stringify(user))._body);
+            console.log("test user in add photo:" + _this.user);
             _this.newPhoto.user = _this.user;
-            _this.addPhotoService.sendPhoto(_this.newPhoto).subscribe(function (data) {
+            // console.log( this.newPhoto.user);
+            _this.addPhotoService.sendPhoto(_this.newPhoto)
+                .subscribe(function (data) {
+                console.log(_this.newPhoto.user);
                 _this.photoAdded = true;
-                _this.newPhoto = new Photo_1.Photo;
+                _this.newPhoto = new Photo_1.Photo();
             }, function (error) { return console.log(error); });
         }, function (error) { return console.log(error); });
     };

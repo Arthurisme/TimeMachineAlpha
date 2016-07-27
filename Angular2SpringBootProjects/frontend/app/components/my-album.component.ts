@@ -30,8 +30,11 @@ export class MyAlbum {
             user => {
                 this.user =  JSON.parse(JSON.parse(JSON.stringify(user))._body);
 
-                this.photoService.getPhotoByUser(this.user).subscribe(
-                    photos => {this.photos =  JSON.parse(JSON.parse(JSON.stringify(user))._body).photoList;}
+                this.photoService.getPhotosByUser(this.user).subscribe(
+                    photos => {
+                        this.photos =  JSON.parse(JSON.parse(JSON.stringify(user))._body).photoList;
+                        console.log("test photos list in front end: "+ this.photos);
+                    }
                 ),
                     error => console.log(error)
             }
