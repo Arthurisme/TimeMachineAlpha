@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
 <fullyQualifiedTypeName name="io.undertow.attribute.RequestMethodAttribute"/>
 <fullyQualifiedTypeName name="java.lang.UnsatisfiedLinkError"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
@@ -11,6 +10,24 @@
 <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
 <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
-<fullyQualifiedTypeName name="com.sensoryex.backend.model.User"/>
 <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
+<fullyQualifiedTypeName name="org.opensaml.ws.wstrust.Claims"/>
+<fullyQualifiedTypeName name="org.hibernate.internal.jaxb.mapping.hbm.JaxbFetchAttributeWithSubselect"/>
+<fullyQualifiedTypeName name="org.opensaml.xml.signature.SignatureException"/>
+<fullyQualifiedTypeName name="org.mockito.internal.configuration.injection.filter.FinalMockCandidateFilter"/>
+<fullyQualifiedTypeName name="java.security.SignatureException"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+<fullyQualifiedTypeName name="org.springframework.boot.context.embedded.FilterRegistrationBean"/>
+<fullyQualifiedTypeName name="com.sensoryex.backend.config.JwtFilter"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="javax.servlet.ServletException"/>
+<fullyQualifiedTypeName name="org.neo4j.cypher.internal.compiler.v2_2.ast.rewriters.getDegreeOptimizer"/>
+<fullyQualifiedTypeName name="com.sensoryex.backend.model.User"/>
+<fullyQualifiedTypeName name="io.jsonwebtoken.Jwts"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="io.jsonwebtoken.SignatureAlgorithm"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
 </qualifiedTypeNameHistroy>

@@ -4,19 +4,22 @@
         <a class="item" [routerLink]="['Home']">
             <img src="resources/static/pic/logo.png" />
         </a>
-        <a class="item">
+        <a class="item" [routerLink]="['Home']">
             <h2>Lagoon</h2>
         </a>
         <a class="item" [routerLink]="['Home']">
             Home
+        </a>
+        <a *ngIf="loginService.checkLogin()" class="item" [routerLink]="['MyAlbum']">
+            My Album
         </a>
     </div>
     <div class="right menu">
         <a class="item" [routerLink]="['Register']">
             Register
         </a>
-        <a class="item">
-            Login
+        <a class="item" [routerLink]="['Login']" (click)="onClick()">
+          {{loginService.checkLogin()? 'Logout' : 'Login'}}
         </a>
     </div>
 </div>

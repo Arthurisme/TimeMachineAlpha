@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="photo-list">
+
+        <div class="ui grid">
+            <div class="ui horizontal segments">
+                <span *ngFor = "let photo of Photos">
+
+                      <div class="ui segments">
+                          <img src="http://localhost:8080/images/{{photo.imageName}}" class="ui medium image"
+                               (click)="onSelect(photo)" style="cursor:pointer">
+                          <div class="ui grid">
+                              <div class="twelve wide column left aligned">
+                                 <strong>{{photp.title}}</strong>
+                              </div>
+                              <div class="four wide column right aligned">
+                                {{photp.likes}}likes
+                              </div>
+                          </div>
+
+                      </div>
+
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <a class="ui button" [routerLink]="['AddPhoto']">Add photo</a>
+
+    </div>
+
+
+</div>
+
+

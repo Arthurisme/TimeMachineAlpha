@@ -15,11 +15,12 @@ var Register = (function () {
     function Register(registerService) {
         this.registerService = registerService;
         this.newUser = new user_1.User();
+        this.registered = false;
     }
     Register.prototype.onSubmit = function () {
         var _this = this;
         this.registerService.sendUser(this.newUser).subscribe(function (data) {
-            // this.registered =true;
+            _this.registered = true;
             _this.newUser = new user_1.User();
         }, function (error) { return console.log(error); });
     };

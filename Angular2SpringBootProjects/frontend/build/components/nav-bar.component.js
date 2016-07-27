@@ -10,16 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require("@angular/router-deprecated");
+var login_service_1 = require("../services/login.service");
 var NavBar = (function () {
-    function NavBar() {
+    function NavBar(loginService) {
+        this.loginService = loginService;
     }
+    NavBar.prototype.onClick = function () {
+        if (this.loginService.checkLogin()) {
+            this.loginService.logout();
+        }
+    };
     NavBar = __decorate([
         core_1.Component({
             selector: 'nav-bar',
             directives: [router_deprecated_1.ROUTER_DIRECTIVES],
             templateUrl: "app/components/nav-bar.component.html"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [login_service_1.LoginService])
     ], NavBar);
     return NavBar;
 }());
