@@ -21,6 +21,9 @@ var register_service_1 = require("./services/register.service");
 var login_service_1 = require("./services/login.service");
 var user_service_1 = require("./services/user.service");
 var photo_service_1 = require("./services/photo.service");
+var add_photo_service_1 = require("./services/add-photo.service");
+var upload_photo_service_1 = require("./services/upload-photo.service");
+var add_photo_component_1 = require("./components/add-photo.component");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -28,7 +31,8 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [nav_bar_component_1.NavBar, home_component_1.HomeComponent, my_album_component_1.MyAlbum, router_deprecated_1.ROUTER_DIRECTIVES, login_component_1.Login],
-            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, register_service_1.RegisterService, login_service_1.LoginService, user_service_1.UserService, photo_service_1.PhotoService],
+            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, register_service_1.RegisterService, login_service_1.LoginService, user_service_1.UserService, photo_service_1.PhotoService,
+                add_photo_service_1.AddPhotoService, upload_photo_service_1.UploadPhotoService],
             template: "\n    <nav-bar></nav-bar>\n    <router-outlet></router-outlet>\n    "
         }),
         router_deprecated_1.RouteConfig([
@@ -36,6 +40,7 @@ var AppComponent = (function () {
             { path: '/register', name: 'Register', component: register_component_1.Register },
             { path: '/login', name: 'Login', component: login_component_1.Login },
             { path: '/my-album', name: 'MyAlbum', component: my_album_component_1.MyAlbum },
+            { path: '/add-photo', name: 'AddPhoto', component: add_photo_component_1.AddPhoto },
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -15,6 +15,9 @@ import {LoginService} from "./services/login.service";
 
 import {UserService} from "./services/user.service";
 import {PhotoService} from "./services/photo.service";
+import {AddPhotoService} from "./services/add-photo.service";
+import {UploadPhotoService} from "./services/upload-photo.service";
+import {AddPhoto} from "./components/add-photo.component";
 
 
 
@@ -25,7 +28,8 @@ import {PhotoService} from "./services/photo.service";
 @Component({
     selector: 'my-app',
     directives:[NavBar,HomeComponent,MyAlbum,ROUTER_DIRECTIVES,Login],
-    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService,LoginService,UserService,PhotoService],
+    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService,LoginService,UserService,PhotoService,
+        AddPhotoService,UploadPhotoService],
     template: `
     <nav-bar></nav-bar>
     <router-outlet></router-outlet>
@@ -37,6 +41,7 @@ import {PhotoService} from "./services/photo.service";
     {path:'/register',name:'Register',component:Register},
     {path:'/login',name:'Login',component:Login},
     {path:'/my-album',name:'MyAlbum',component:MyAlbum},
+    {path:'/add-photo',name:'AddPhoto',component:AddPhoto},
 ])
 
 export class AppComponent { }
