@@ -5,7 +5,68 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2016-07-27T13:36:46Z</updated>
+  <updated>2016-07-28T17:25:00Z</updated>
+  <entry>
+    <title>Reactive Programming with Spring 5.0 M1</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/28/reactive-programming-with-spring-5-0-m1" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Rossen Stoyanchev</name>
+    </author>
+    <id>tag:spring.io,2016-07-28:2573</id>
+    <updated>2016-07-28T17:25:00Z</updated>
+    <content type="html">&lt;p&gt;As Juergen mentioned in his Spring Framework 5 M1 &lt;a href="https://spring.io/blog/2016/07/28/spring-framework-5-0-m1-released"&gt;release announcement&lt;/a&gt; our Spring Reactive initiative has been merged into Spring Framework proper preserving all contributions and its full history over more than a year.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-is-it" class="anchor" name="what-is-it"&gt;&lt;/a&gt;What is it?&lt;/h2&gt;
+&lt;p&gt;In a nutshell reactive programming is about non-blocking, event-driven applications that scale with a small number of threads with backpressure as a key ingredient that aims to ensure producers do not overwhelm consumers. The &lt;a href="https://github.com/reactive-streams/reactive-streams-jvm"&gt;Reactive Streams specification&lt;/a&gt; (also adopted in Java 9) enables the ability to communicate demand across layers and libraries from different providers. For example an HTTP connection writing to a client can communicate its availability to write all the way upstream to a data repository fetching data from a datbase so that given a slow HTTP client the repository can slow down too or even pause. For a more extensive introduction to reactive programming check Dave Syer&amp;rsquo;s multipart series &lt;a href="https://spring.io/blog/2016/06/07/notes-on-reactive-programming-part-i-the-reactive-landscape"&gt;&amp;ldquo;Notes on Reactive Programming&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A practical challenge when switching from imperative-style logic to non-blocking is the ability to compose async logic without getting lost in &amp;ldquo;callback hell&amp;rdquo;. A good example of the kind of API we need are the &lt;code&gt;CompletionStage&lt;/code&gt; and &lt;code&gt;Stream&lt;/code&gt; API in Java 8. However &lt;code&gt;Stream&lt;/code&gt; was really built for Collections and is not well suited for infinite or latency sensitive sequences such as we often have with non-blocking I/O and event-driven applications. &lt;a href="https://projectreactor.io/"&gt;Reactor&lt;/a&gt; and its upcoming 3.0 GA release is a Reactive Streams implementation that extends a Reactive Streams &lt;code&gt;Publisher&lt;/code&gt; with the &lt;code&gt;Flux&lt;/code&gt; and &lt;code&gt;Mono&lt;/code&gt; API types providing a declarative composition API similar to that of Java 8 Stream but more extensive and more comparable with the &lt;a href="http://reactivex.io/"&gt;ReactiveX&lt;/a&gt; patterns. For more on this check Sebastien Deleuze&amp;rsquo;s &lt;a href="https://spring.io/blog/2016/04/19/understanding-reactive-types"&gt;&amp;ldquo;Understanding Reactive Types&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;&lt;h2&gt;&lt;a href="#what-rsquo-s-in-the-box" class="anchor" name="what-rsquo-s-in-the-box"&gt;&lt;/a&gt;What&amp;rsquo;s in the box?&lt;/h2&gt;
+&lt;p&gt;Spring Framework 5 embraces Reactive Streams and Reactor for its own reactive use as well as in many of its core APIs. The M1 release provides reactive serialization and deserialization to and from JSON (Jackson) and XML (JAXB), a reactive web framework that supports the &lt;code&gt;@Controller&lt;/code&gt; programming model, and a reactive &lt;code&gt;WebClient&lt;/code&gt;. It becomes easy to support input and output streaming scenarios for microservices, scatter/gather, data ingestion, and so on. &lt;/p&gt;
+&lt;p&gt;Below is a controller that obtains and streams data from a remote server in a completely non-blocking and reactive manner:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="prettyprint java"&gt;@GetMapping(&amp;quot;/accounts/{id}/alerts&amp;quot;)&#xD;
+public Flux&amp;lt;Alert&amp;gt; getAccountAlerts(@PathVariable Long id) {&#xD;
+&#xD;
+  return this.repository.getAccount(id)&#xD;
+      .flatMap(account -&amp;gt;&#xD;
+          this.webClient&#xD;
+              .perform(get(&amp;quot;/alerts/{key}&amp;quot;, account.getKey()))&#xD;
+              .extract(bodyStream(Alert.class)));&#xD;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What is the reactive stack that supports this? Spring Web Reactive lives in the new &lt;code&gt;spring-web-reactive&lt;/code&gt; module next to the existing (and popular!) Spring Web MVC that lives in the &lt;code&gt;spring-webmvc&lt;/code&gt; module. The two modules share many algorithms and mechanisms but cannot actually share any code. This is because Spring Web Reactive runs on a Reactive Streams HTTP adapter layer that&amp;rsquo;s fully non-blocking and reactive all the way down to the HTTP runtime. So while Spring MVC is built for and runs on Servlet containers, Spring Web Reactive runs also runs on Netty and Undertow&lt;/p&gt;&lt;h2&gt;&lt;a href="#spring-web-reactive-vs-spring-web-mvc" class="anchor" name="spring-web-reactive-vs-spring-web-mvc"&gt;&lt;/a&gt;Spring Web Reactive vs Spring Web MVC&lt;/h2&gt;
+&lt;p&gt;How does the Spring Framework team view these two frameworks you might wonder at this point and what do we recommend that you use? First and foremost we aim for the greatest possible consistency within reason. There is nothing fundamentally incompatible between the &lt;code&gt;@Controller&lt;/code&gt; programming model and the reactive ways. It&amp;rsquo;s all about what happens underneath to support that model so on the surface there is no difference except for the full support for reactive types such as &lt;code&gt;Flux&lt;/code&gt; and &lt;code&gt;Mono&lt;/code&gt; and &lt;code&gt;Observable&lt;/code&gt; and &lt;code&gt;Single&lt;/code&gt; from RxJava both for input and for output.&lt;/p&gt;
+&lt;p&gt;Is Spring Web Reactive better than Spring MVC? The greatest value proposition of Spring Framework&amp;rsquo;s reactive support and unique positioning is that we don&amp;rsquo;t leave existing applications behind. In Spring 5, traditional Spring MVC keeps running on any Servlet 3.1 stack, including Java EE 7 servers. For Spring Web Reactive, we support Tomcat, Jetty, Undertow, and Netty without a compromise and can also adapt to any Servlet 3.1 container. We plan to continue the synergy between Spring MVC and Spring Web Reactive in terms of shared algorithms and mechanisms in support of the same programming model on top. Issues reported on the Spring MVC side will benefit Spring Web Reactive and vice versa. &lt;/p&gt;
+&lt;p&gt;That means you the developer can choose what’s better for your purposes. If anyone tells you that synchronous or blocking is evil look the other way. They&amp;rsquo;re not and in reality it is a trade-off. Imperative style logic is simple to write and simpler to debug. Sure it doesn&amp;rsquo;t scale as well or as efficiently but that&amp;rsquo;s where the trade-off comes. There will always be many cases where imperative is just fine for the task at hand and others where reactive and non-blocking are a must. In a microservices scenario, you may even choose the implementation style per individual service, all within the same consistent programming model.&lt;/p&gt;&lt;h2&gt;&lt;a href="#giving-it-a-try" class="anchor" name="giving-it-a-try"&gt;&lt;/a&gt;Giving it a try&lt;/h2&gt;
+&lt;p&gt;For more details and to get started see the Spring Boot &lt;a href="https://github.com/bclozel/spring-boot-web-reactive"&gt;reactive web starter&lt;/a&gt; and the &lt;a href="http://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/htmlsingle/#web-reactive"&gt;new chapter&lt;/a&gt; in the reference documentation.&lt;/p&gt;
+&lt;p&gt;Last but not least I hope you are joining us at &lt;a href="https://springoneplatform.io/"&gt;SpringOne Platform 2016&lt;/a&gt; where we have a keynote and numerous sessions on this topic. See you in Las Vegas!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Framework 5.0 M1 released</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/28/spring-framework-5-0-m1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Juergen Hoeller</name>
+    </author>
+    <id>tag:spring.io,2016-07-27:2570</id>
+    <updated>2016-07-28T14:18:00Z</updated>
+    <content type="html">&lt;p&gt;Dear Spring community,&lt;/p&gt;
+&lt;p&gt;It is my pleasure to announce that the first Spring Framework 5.0 milestone is available now: Check &lt;a href="http://projects.spring.io/spring-framework/"&gt;http://projects.spring.io/spring-framework/&lt;/a&gt; for how to obtain it from our milestone repository, and give it a spin while it&amp;rsquo;s hot!&lt;/p&gt;
+&lt;p&gt;Find out about the 5.0 M1 changes on our &lt;a href="https://github.com/spring-projects/spring-framework/wiki/What's-New-in-the-Spring-Framework#whats-new-in-spring-framework-5x"&gt;What&amp;rsquo;s New wiki page&lt;/a&gt; or in more detail on &lt;a href="https://jira.spring.io/issues/?jql=fixVersion%20%3D%20%225.0%20M1%22%20AND%20project%20%3D%20SPR%20ORDER%20BY%20issuetype%20DESC"&gt;JIRA&lt;/a&gt;. Follow our master branch on &lt;a href="https://github.com/spring-projects/spring-framework/"&gt;GitHub&lt;/a&gt; for the latest updates.&lt;/p&gt;
+&lt;p&gt;Most importantly, our Spring Reactive initiative has been merged into Spring Framework proper, with core reactive functionality and reactive web endpoint support available out of the box now. Stay tuned for &lt;a href="https://spring.io/blog/2016/07/28/reactive-programming-with-spring-5-0-m1"&gt;Rossen&amp;rsquo;s blog post&lt;/a&gt; on our reactive programming story in 5.0 M1!&lt;/p&gt;
+&lt;p&gt;This initial milestone covers all of our baseline upgrade efforts, in particular going JDK 8+ all across the codebase, plus support for JUnit 5 (which is currently at M2 itself). And it delivers fundamental JDK 9 compatibility at runtime as well as for the framework build and test suite.&lt;/p&gt;
+&lt;p&gt;Cheers,&lt;br/&gt;Juergen&lt;/p&gt;
+&lt;p&gt;P.S.: See you at &lt;a href="https://springoneplatform.io/"&gt;SpringOne Platform 2016&lt;/a&gt; in Las Vegas next week!&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Boot 1.3.7 available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2016/07/28/spring-boot-1-3-7-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Stéphane Nicoll</name>
+    </author>
+    <id>tag:spring.io,2016-07-28:2571</id>
+    <updated>2016-07-28T11:01:10Z</updated>
+    <content type="html">&lt;p&gt;It is my pleasure to announce that Spring Boot 1.3.7 has been released and is available now from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;This maintenance release includes a &lt;a href="https://github.com/spring-projects/spring-boot/milestone/70?closed=1"&gt;number of fixes&lt;/a&gt; and 3rd party dependency updates. Stay tuned for more release announcement with Spring Boot &lt;code&gt;1.4.0.RELEASE&lt;/code&gt; coming up next!&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Data Release Train Ingalls M1 Released</title>
     <link rel="alternate" href="https://spring.io/blog/2016/07/27/spring-data-release-train-ingalls-m1-released" />
@@ -14,11 +75,11 @@
       <name>Mark Paluch</name>
     </author>
     <id>tag:spring.io,2016-07-27:2569</id>
-    <updated>2016-07-27T13:36:46Z</updated>
+    <updated>2016-07-27T13:36:00Z</updated>
     <content type="html">&lt;p&gt;On behalf of the Spring Data team, I’m happy to announce the first milestone of the &lt;a href="https://en.wikipedia.org/wiki/Daniel_Henry_Holmes_Ingalls,_Jr."&gt;Ingalls&lt;/a&gt; release train. The release ships &lt;a href="https://jira.spring.io/issues/?filter=15383"&gt;230 tickets&lt;/a&gt; fixed! The most noteworthy new features are:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Use of method handles for property access in conversion subsystem (Commons, MongoDB).&lt;/li&gt;
-  &lt;li&gt;Upgrade to Cassandra 3.0 for Spring Data Cassandra.&lt;/li&gt;
+  &lt;li&gt;Upgrade to Cassandra 3.0 for Spring Data Cassandra (see the &lt;a href="https://github.com/spring-projects/spring-data-examples/tree/master/cassandra"&gt;updated examples&lt;/a&gt; for details).&lt;/li&gt;
   &lt;li&gt;Support for declarative query methods for Cassandra repositories.&lt;/li&gt;
   &lt;li&gt;Support for Redis geo commands.&lt;/li&gt;
   &lt;li&gt;Any-match mode for query-by-example.&lt;/li&gt;
@@ -1049,7 +1110,7 @@ git merge --no-ff contract-change-pr&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;private RestTemplate restTemplate = new RestTemplate();
 
 private HttpStatus block(int value) {
-    return this.restTemplate.getForEntity("http://example.com", String.class, value)
+    return this.restTemplate.getForEntity("http://example.com/{value}", String.class, value)
             .getStatusCode();
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -1190,7 +1251,7 @@ Tomcat allocates 100 threads for processing HTTP requests by default. That is ex
 &lt;div class="title"&gt;Note&lt;/div&gt;
 &lt;/td&gt;
 &lt;td class="content"&gt;
-Spring Reactive started as a standalone project, but is folded into the Spring Framework in version 5.0 (first milestone July 2016).
+Spring Reactive started as a standalone project, but is folded into the Spring Framework in version 5.0 (first milestone June 2016).
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -1744,174 +1805,5 @@ A great way to start using this new release is to follow the &lt;a href="http://
 &lt;p&gt;All of the main features mentioned above were available in the 1.0.0.RC1 release and can be read about &lt;a href="https://spring.io/blog/2016/06/17/spring-cloud-task-1-0-0-rc1-is-now-available"&gt;here&lt;/a&gt;. What is different in this release is that the dependencies have been refactored so that instead of including &lt;code&gt;spring-cloud-task-core&lt;/code&gt; and any of the additional task modules desired, you can now include just the &lt;code&gt;spring-cloud-task-starter&lt;/code&gt; dependency and the other spring modules you want to obtain the expected functionality.&lt;/p&gt;
 &lt;p&gt;For example, if a developer wants to write a batch job that is run as a task, instead of needing the &lt;code&gt;spring-cloud-task-core&lt;/code&gt;, &lt;code&gt;spring-cloud-task-batch&lt;/code&gt;, and &lt;code&gt;spring-boot-starter-batch&lt;/code&gt; in your pom, now you only need the &lt;code&gt;spring-cloud-task-starter&lt;/code&gt; and the &lt;code&gt;spring-boot-starter-batch&lt;/code&gt;. The batch features will be automatically bootstrapped for you (with simple options for overrides as with all Boot autoconfig).&lt;/p&gt;&lt;h2&gt;&lt;a href="#where-to-from-here" class="anchor" name="where-to-from-here"&gt;&lt;/a&gt;Where to from here?&lt;/h2&gt;
 &lt;p&gt;Spring Cloud Task is now GA and we&amp;rsquo;re excited to hear from you. Our short-term focus will be to improve Spring Cloud Task&amp;rsquo;s interoperability with Spring Cloud Data Flow and the runtimes it supports. However, we look forward to hearing from you in the comments below, elsewhere online on &lt;a href="http://stackoverflow.com/tags/spring-cloud-task"&gt;StackOverflow&lt;/a&gt; and &lt;a href="https://twitter.com/i/notifications"&gt;Twitter&lt;/a&gt;, as well as in person at &lt;a href="https://springoneplatform.io/"&gt;Spring One Platform&lt;/a&gt; next month!&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Brixton.SR3 is available</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/07/11/spring-cloud-brixton-sr3-is-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Ryan Baxter</name>
-    </author>
-    <id>tag:spring.io,2016-07-11:2551</id>
-    <updated>2016-07-11T14:45:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team, I am pleased to announce that Service Release 3 of the &lt;a href="http://cloud.spring.io"&gt;Spring Cloud Brixton&lt;/a&gt; Release Train is available today. The release can be found in our &lt;a href="http://repo.spring.io/release"&gt;Spring Release repository&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22spring-cloud-dependencies%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Included in this release is the &lt;a href="https://spring.io/blog/2016/07/11/spring-cloud-task-1-0-1-release-is-now-available"&gt;GA release of Spring Cloud Task&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Other than the addition of Spring Cloud Task, this release includes primarily bug fixes.&lt;/p&gt;&lt;h4&gt;&lt;a href="#the-following-modules-were-updated-as-part-of-brixton-sr3" class="anchor" name="the-following-modules-were-updated-as-part-of-brixton-sr3"&gt;&lt;/a&gt;The following modules were updated as part of Brixton.SR3:&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Cloud Security &lt;a href="https://github.com/spring-cloud/spring-cloud-security/milestone/12?closed=1"&gt;1.1.2.RELEASE&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Netflix &lt;a href="https://github.com/spring-cloud/spring-cloud-netflix/milestone/24?closed=1"&gt;1.1.4.RELEASE&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Sleuth &lt;a href="https://github.com/spring-cloud/spring-cloud-sleuth/milestone/10?closed=1"&gt;1.0.3.RELEASE&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Cloud Task &lt;a href="https://github.com/spring-cloud/spring-cloud-task/milestone/6?closed=1"&gt;1.0.1.RELEASE&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And, as always, we welcome feedback: either on &lt;a href="https://github.com/spring-cloud"&gt;GitHub&lt;/a&gt;, on &lt;a href="https://gitter.im/spring-cloud/spring-cloud"&gt;gitter&lt;/a&gt;, on &lt;a href="http://stackoverflow.com/questions/tagged/spring-cloud"&gt;Stack Overflow&lt;/a&gt;, or on &lt;a href="https://twitter.com/SpringCloudOSS"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
-&lt;hr/&gt;
-&lt;p&gt;The Spring Cloud team will be talking about Spring Cloud at &lt;a href="http://springoneplatform.io"&gt;Spring One Platform&lt;/a&gt;, which will be taking place in Las Vegas between August 1-4 this year. There are many other great talks so &lt;a href="https://2016.event.springoneplatform.io/schedule/sessions"&gt;check the agenda&lt;/a&gt; and &lt;a href="https://2016.event.springoneplatform.io/register"&gt;get your ticket&lt;/a&gt; if you haven’t done so already. &lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Java DSL for Spring Integration 1.2 M1 and 1.1.3 are available</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/07/08/java-dsl-for-spring-integration-1-2-m1-and-1-1-3-are-available" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Artem Bilan</name>
-    </author>
-    <id>tag:spring.io,2016-07-08:2550</id>
-    <updated>2016-07-08T22:14:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;I&amp;#8217;m pleased to announce that the Java DSL for Spring Integration &lt;code&gt;1.2 M1&lt;/code&gt; is available now!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;First of I’d like to thank everyone who created issues, raised Pull Requests, provided feedback or just asked questions on StackOverflow.
-Without the community we couldn&amp;#8217;t be the successful project we are today!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The artifact &lt;code&gt;org.springframework.integration:spring-integration-java-dsl:1.2.0.M1&lt;/code&gt; is available in the &lt;a href="http://repo.spring.io/milestone"&gt;Milestone repo&lt;/a&gt;.
-So, give it a shot and don&amp;#8217;t hesitate to raise a &lt;a href="https://github.com/spring-projects/spring-integration-java-dsl/issues"&gt;GH issue&lt;/a&gt; for any feedback!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Some highlights of the current iteration:&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="apache-kafka-0-9-support" class="sect0"&gt;&lt;a class="anchor" href="#apache-kafka-0-9-support"&gt;&lt;/a&gt;Apache Kafka 0.9 support&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Based on the recently released &lt;a href="https://spring.io/blog/2016/07/04/spring-for-apache-kafka-1-0-and-spring-integration-kafka-2-0-go-ga"&gt;Spring for Apache Kafka&lt;/a&gt; project, a new &lt;code&gt;Kafka09&lt;/code&gt; factory has been introduced.
-This is straightforward Java DSL factory for producing &lt;code&gt;IntegrationComponentSpec&lt;/code&gt; fluent API builders for adapters based on the a Spring for Apache Kafka foundation.
-An existing &lt;code&gt;Kafka&lt;/code&gt; factory for Apache Kafka &lt;code&gt;0.8&lt;/code&gt; support is still present for backward compatibility.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="runtime-flow-registration" class="sect0"&gt;&lt;a class="anchor" href="#runtime-flow-registration"&gt;&lt;/a&gt;Runtime flow registration&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In many cases it would be better to specify an integration flow based on the system state or even during some business function invocation.
-Or even make it volatile after execution.
-For this purpose an &lt;code&gt;IntegrationFlowContext&lt;/code&gt; component has been introduced to let the manual &lt;code&gt;IntegrationFlow&lt;/code&gt; control.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Autowired
-private IntegrationFlowContext context;
-...
-
-IntegrationFlow myFlow = f -&amp;gt; f
-  			.&amp;lt;String, String&amp;gt;transform(String::toUpperCase)
-   			.transform("Hello, "::concat);
-
-String flowId = this.context.register(myFlow);
-MessagingTemplate messagingTemplate = this.context.messagingTemplateFor(flowId);
-
-assertEquals("Hello, SPRING",
-            messagingTemplate.convertSendAndReceive("spring", String.class));
-
-this.context.remove(flowId);&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See &lt;code&gt;IntegrationFlowContext&lt;/code&gt; JavaDocs for more information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="operator-log" class="sect0"&gt;&lt;a class="anchor" href="#operator-log"&gt;&lt;/a&gt;Operator log()&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For convenience to log the message journey Spring Integration manner (a-la &lt;code&gt;&amp;lt;logging-channel-adapter&amp;gt;&lt;/code&gt;), a new &lt;code&gt;log()&lt;/code&gt; operator has been introduced.
-Underneath it is represented just by &lt;code&gt;WireTap&lt;/code&gt; &lt;code&gt;ChannelInterceptor&lt;/code&gt; and &lt;code&gt;LoggingHandler&lt;/code&gt; as subscriber.
-It is responsible to log message incoming into the next endpoint:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;.filter(...)
-.log(LoggingHandler.Level.ERROR, "test.category", m -&amp;gt; m.getHeaders().getId())
-.route(...)&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In this example an &lt;code&gt;id&lt;/code&gt; header will be logged with &lt;code&gt;ERROR&lt;/code&gt; level onto "test.category" only for messages passed the filter and before routing.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="messagechannelspec-wiretap" class="sect0"&gt;&lt;a class="anchor" href="#messagechannelspec-wiretap"&gt;&lt;/a&gt;MessageChannelSpec.wireTap()&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;A &lt;code&gt;.wireTap()&lt;/code&gt; fluent API has been introduced for &lt;code&gt;MessageChannelSpec&lt;/code&gt; builders.
-Now a target configuration gains much more from Java DSL usage:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Bean
-public QueueChannelSpec myChannel() {
-    return MessageChannels
-            .queue()
-            .wireTap("loggingFlow.input");
-}
-
-@Bean
-public IntegrationFlow loggingFlow() {
-    return f -&amp;gt; f.log();
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id="typed-routers" class="sect0"&gt;&lt;a class="anchor" href="#typed-routers"&gt;&lt;/a&gt;Typed routers&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Having a pure Java instantiation for beans it really looks enough organic to have routing keys as any desired type and avoid converting to &lt;code&gt;String&lt;/code&gt; everything.
-Plus the type relaxing let us have configuration as generic-aware:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Bean
-public IntegrationFlow payloadTypeRouteFlow() {
-    return f -&amp;gt; f
-          .&amp;lt;Object, Class&amp;gt;route(Object::getClass, m -&amp;gt; m
-                         .channelMapping(String.class, "stringsChannel")
-                         .channelMapping(Integer.class, "integersChannel"));
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;See &lt;a href="https://github.com/spring-projects/spring-integration-java-dsl/commits/v1.2.0.M1"&gt;commit history&lt;/a&gt; for &lt;code&gt;1.2.0.M1&lt;/code&gt; version for more information.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="bug-fixes" class="sect0"&gt;&lt;a class="anchor" href="#bug-fixes"&gt;&lt;/a&gt;Bug Fixes&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The maintenance version &lt;code&gt;1.1.3&lt;/code&gt; has been also release with several nasty bug fixes and Spring Integration 4.3 compatibility.
-The &lt;code&gt;org.springframework.integration:spring-integration-java-dsl:1.1.3.RELEASE&lt;/code&gt; artifact is available in the &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search|ga|1|spring-integration-java-dsl"&gt;Maven Central&lt;/a&gt;.
-It is recommended to upgrade for everyone, especially if you use &lt;code&gt;JMS&lt;/code&gt; factory and beans which implement &lt;code&gt;ApplicationListener&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="next-steps" class="sect0"&gt;&lt;a class="anchor" href="#next-steps"&gt;&lt;/a&gt;Next Steps&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;We expect the next Milestone 2 for version &lt;code&gt;1.2&lt;/code&gt; enough soon, over a couple weeks, with an RC and release somewhere in the middle of August.
-At the same time we are going to absorb &lt;code&gt;spring-integration-java-dsl&lt;/code&gt; project into &lt;a href="http://projects.spring.io/spring-integration/"&gt;Spring Integration Core&lt;/a&gt; with version &lt;code&gt;5.0&lt;/code&gt; and Java 8 code base.
-The current &lt;code&gt;1.2&lt;/code&gt; version will be still supported, but just for bug fixes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-integration-java-dsl"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-integration-java-dsl/wiki/Spring-Integration-Java-DSL-Reference"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-integration-java-dsl/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-integration"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>CVE-2016-5007 Spring Security / MVC Path Matching Inconsistency</title>
-    <link rel="alternate" href="https://spring.io/blog/2016/07/08/cve-2016-5007-spring-security-mvc-path-matching-inconsistency" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Rob Winch</name>
-    </author>
-    <id>tag:spring.io,2016-07-08:2549</id>
-    <updated>2016-07-08T13:56:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2016/07/04/spring-framework-4-3-1-and-4-2-7-available-now"&gt;Spring Framework 4.3.1&lt;/a&gt; and &lt;a href="https://spring.io/blog/2016/07/07/spring-security-4-1-1-released"&gt;Spring Security 4.1.1&lt;/a&gt; provide fixes for &lt;a href="http://pivotal.io/security/cve-2016-5007"&gt;CVE-2016-5007&lt;/a&gt; "Spring Security / MVC Path Matching Inconsistency".&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Applications using Spring Security and Spring MVC should upgrade to Spring Security 4.1.1+ and Spring Framework 4.3.1+ and use the &lt;a href="http://docs.spring.io/spring-security/site/docs/4.1.x/reference/htmlsingle/#mvc-requestmatcher"&gt;MvcRequestMatcher&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Additional details and further mitigations can be found in &lt;a href="http://pivotal.io/security/cve-2016-5007"&gt;CVE-2016-5007&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>

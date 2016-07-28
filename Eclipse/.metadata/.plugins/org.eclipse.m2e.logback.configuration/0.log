@@ -1187,3 +1187,187 @@
 2016-07-27 16:46:53,737 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2016-07-27 16:46:53,739 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-07-27 16:46:53,739 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-27 23:13:25,311 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-27 23:13:25,312 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-27 23:13:25,320 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-27 23:13:25,322 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-27 23:13:25,322 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:02:40,704 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:02:40,775 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:02:40,776 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:02:40,777 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:02:40,777 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:04:35,069 [Worker-69] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sensoryex:lagoon:0.0.1-SNAPSHOT @ /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/pom.xml.
+2016-07-28 00:04:36,462 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:04:36,463 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:04:36,463 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:04:36,464 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:04:36,465 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:05:16,239 [Worker-71] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sensoryex:lagoon:0.0.1-SNAPSHOT @ /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/pom.xml.
+2016-07-28 00:05:16,423 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:16,424 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:05:16,424 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:05:16,427 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:16,427 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:05:18,512 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:18,512 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:05:18,524 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 00:05:18,537 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:18,538 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:05:53,805 [Worker-67] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sensoryex:lagoon:0.0.1-SNAPSHOT @ /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/pom.xml.
+2016-07-28 00:05:53,994 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:53,995 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:05:53,995 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:05:53,997 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:53,997 [Worker-67] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:05:56,120 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:56,123 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:05:56,139 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 00:05:56,155 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:05:56,155 [Worker-69] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:06:55,140 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:06:55,140 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:06:55,142 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 00:06:55,143 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:06:55,143 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:29:13,504 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:29:13,504 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:29:13,506 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 00:29:13,507 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:29:13,508 [Worker-70] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:38:10,077 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:38:10,077 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 00:38:10,078 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:38:10,079 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:38:10,079 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 00:40:30,195 [Worker-72] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.sensoryex:lagoon:0.0.1-SNAPSHOT @ /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/pom.xml.
+2016-07-28 00:40:30,616 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:40:30,618 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:40:30,618 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2016-07-28 00:40:30,622 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 00:40:30,622 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 09:34:38,489 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 09:34:38,518 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 09:34:38,547 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 09:34:38,550 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 09:34:38,550 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 11:24:18,149 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 11:24:18,252 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 11:24:18,281 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 11:24:18,283 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 11:24:18,283 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 11:29:47,277 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 11:29:47,306 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 11:29:47,382 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 11:29:47,384 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 11:29:47,384 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 12:32:37,037 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 12:32:37,050 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 12:32:37,060 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 12:32:37,062 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 12:32:37,062 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:08:11,526 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:08:11,626 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:08:11,663 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:08:11,665 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:08:11,666 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:10:19,199 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:10:19,201 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:10:19,202 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:10:19,204 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:10:19,204 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:11:33,231 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:11:33,232 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:11:33,233 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:11:33,235 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:11:33,235 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:13:05,864 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:13:05,865 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:13:05,867 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:13:05,873 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:13:05,873 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:14:05,894 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:14:05,894 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:14:05,895 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:14:05,898 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:14:05,898 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:14:38,472 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:14:38,473 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:14:38,474 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:14:38,476 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:14:38,476 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:19:44,661 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:19:44,663 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:19:44,664 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:19:44,665 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:19:44,665 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:20:15,365 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:15,366 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:20:15,367 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:20:15,370 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:15,370 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:20:23,039 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:23,040 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:20:23,042 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:20:23,043 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:23,043 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:20:27,941 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:27,941 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:20:27,943 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:20:27,945 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:20:27,945 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:21:47,894 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:21:47,895 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:21:47,898 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:21:47,900 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:21:47,900 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:21:54,617 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:21:54,618 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:21:54,621 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:21:54,623 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:21:54,623 [Worker-53] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:24:56,742 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:24:56,743 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:24:56,744 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:24:56,745 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:24:56,746 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:26:52,736 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:26:52,737 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:26:52,738 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:26:52,740 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:26:52,740 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:27:11,389 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:27:11,390 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:27:11,391 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:27:11,392 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:27:11,393 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:47:59,493 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:47:59,494 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:47:59,494 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:47:59,497 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:47:59,497 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 14:53:54,708 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:53:54,734 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 14:53:54,743 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 14:53:54,745 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 14:53:54,745 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 15:02:37,333 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 15:02:37,361 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 15:02:37,381 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 15:02:37,383 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 15:02:37,383 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 15:16:03,429 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 15:16:03,453 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 15:16:03,593 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 15:16:03,595 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 15:16:03,595 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 16:52:04,958 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 16:52:04,976 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 16:52:04,986 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 16:52:04,988 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 16:52:04,988 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources
+2016-07-28 16:55:23,832 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 16:55:23,860 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2016-07-28 16:55:23,892 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 24 resources
+2016-07-28 16:55:23,894 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-07-28 16:55:23,894 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Angular2SpringBootProjects/backend/src/test/resources

@@ -7,7 +7,7 @@ export class Comment{
     public commentId:number;
     public comment:string;
 
-    public photo:Photo[];
+    public photo:Photo;
     public photoId:number;
 
     public userName: string;

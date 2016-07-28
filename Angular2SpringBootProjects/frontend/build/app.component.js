@@ -24,6 +24,7 @@ var photo_service_1 = require("./services/photo.service");
 var add_photo_service_1 = require("./services/add-photo.service");
 var upload_photo_service_1 = require("./services/upload-photo.service");
 var add_photo_component_1 = require("./components/add-photo.component");
+var image_detail_component_1 = require("./components/image-detail.component");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -40,7 +41,8 @@ var AppComponent = (function () {
             { path: '/register', name: 'Register', component: register_component_1.Register },
             { path: '/login', name: 'Login', component: login_component_1.Login },
             { path: '/my-album', name: 'MyAlbum', component: my_album_component_1.MyAlbum },
-            { path: '/add-photo', name: 'AddPhoto', component: add_photo_component_1.AddPhoto },
+            { path: '/image-detail/:id', name: 'ImageDetail', component: image_detail_component_1.ImageDetail },
+            { path: '/add-photo', name: 'AddPhoto', component: add_photo_component_1.AddPhoto }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

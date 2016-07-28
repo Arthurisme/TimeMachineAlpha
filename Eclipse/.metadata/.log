@@ -9796,3 +9796,432 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.core.net 1 0 2016-07-27 16:13:54.521
 !MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 00:29:03.224
+!MESSAGE greeting()#2 [in BackendApplication [in [Working copy] BackendApplication.java [in com.sensoryex.backend [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-07-28 01:15:02.255
+!MESSAGE Connection to https://spring.io/blog.atom failed on spring.io: unknown error. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: spring.io: unknown error
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:907)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1302)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1255)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1171)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1105)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:259)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:131)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:611)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:446)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1077)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:1068)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:1064)
+	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.equinox.p2.transport.ecf 2 0 2016-07-28 01:15:02.279
+!MESSAGE Connection to http://dist.springsource.com/release/STS/doc/updates.xml failed on dist.springsource.com: unknown error. Retry attempt 0 started
+!STACK 0
+java.net.UnknownHostException: dist.springsource.com: unknown error
+	at java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.net.InetAddress$2.lookupAllHostAddr(InetAddress.java:907)
+	at java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1302)
+	at java.net.InetAddress.getAllByName0(InetAddress.java:1255)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1171)
+	at java.net.InetAddress.getAllByName(InetAddress.java:1105)
+	at org.apache.http.impl.conn.SystemDefaultDnsResolver.resolve(SystemDefaultDnsResolver.java:44)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.resolveHostname(DefaultClientConnectionOperator.java:259)
+	at org.apache.http.impl.conn.DefaultClientConnectionOperator.openConnection(DefaultClientConnectionOperator.java:159)
+	at org.apache.http.impl.conn.AbstractPoolEntry.open(AbstractPoolEntry.java:144)
+	at org.apache.http.impl.conn.AbstractPooledConnAdapter.open(AbstractPooledConnAdapter.java:131)
+	at org.apache.http.impl.client.DefaultRequestDirector.tryConnect(DefaultRequestDirector.java:611)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:446)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:82)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.performConnect(HttpClientRetrieveFileTransfer.java:1077)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:1068)
+	at org.eclipse.ecf.provider.filetransfer.httpclient4.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:1064)
+	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 2 2016-07-28 09:15:19.515
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.m2e.core.internal.builder.MavenBuilderImpl.processBuildResults(MavenBuilderImpl.java:286)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilderImpl.build(MavenBuilderImpl.java:179)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$1.method(MavenBuilder.java:172)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$1.method(MavenBuilder.java:1)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1$1.call(MavenBuilder.java:115)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1.call(MavenBuilder.java:105)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:86)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:200)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.core.resources 4 75 2016-07-28 09:15:19.574
+!MESSAGE Errors occurred during the build.
+!SUBENTRY 1 org.eclipse.m2e.core 4 75 2016-07-28 09:15:19.574
+!MESSAGE Errors running builder 'Maven Project Builder' on project 'lagoon'.
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.m2e.core.internal.builder.MavenBuilderImpl.processBuildResults(MavenBuilderImpl.java:286)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilderImpl.build(MavenBuilderImpl.java:179)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$1.method(MavenBuilder.java:172)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$1.method(MavenBuilder.java:1)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1$1.call(MavenBuilder.java:115)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:112)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod$1.call(MavenBuilder.java:105)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:176)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:151)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:99)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:86)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:200)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:205)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:245)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:300)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:359)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:382)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:144)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:235)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-07-28 09:32:52.725 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -keyring /Users/Arthur/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product -data /Users/Arthur/Dropbox/App/Isomorphic/Angular2-springboot/Eclipse -product org.eclipse.epp.package.jee.product -keyring /Users/Arthur/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2016-07-28 09:33:01.767
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+
+!ENTRY org.eclipse.equinox.ds 2 0 2016-07-28 09:33:31.453
+!MESSAGE Getting a lock required more than 10000 ms. There might be a synchronization problem in this callstack or just the build/dispose process of some components took too long! 
+!STACK 0
+java.lang.Exception: Debug stacktrace
+	at org.eclipse.equinox.internal.ds.InstanceProcess.getLock(InstanceProcess.java:120)
+	at org.eclipse.equinox.internal.ds.InstanceProcess.buildComponent(InstanceProcess.java:560)
+	at org.eclipse.equinox.internal.ds.ServiceReg.getService(ServiceReg.java:53)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceFactoryUse$1.run(ServiceFactoryUse.java:212)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceFactoryUse.factoryGetService(ServiceFactoryUse.java:210)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceFactoryUse.getService(ServiceFactoryUse.java:111)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceConsumer$2.getService(ServiceConsumer.java:45)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistrationImpl.getService(ServiceRegistrationImpl.java:496)
+	at org.eclipse.osgi.internal.serviceregistry.ServiceRegistry.getService(ServiceRegistry.java:461)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.getService(BundleContextImpl.java:619)
+	at org.eclipse.equinox.internal.p2.core.ProvisioningAgent.addingService(ProvisioningAgent.java:159)
+	at org.osgi.util.tracker.ServiceTracker$Tracked.customizerAdding(ServiceTracker.java:941)
+	at org.osgi.util.tracker.ServiceTracker$Tracked.customizerAdding(ServiceTracker.java:1)
+	at org.osgi.util.tracker.AbstractTracked.trackAdding(AbstractTracked.java:256)
+	at org.osgi.util.tracker.AbstractTracked.trackInitial(AbstractTracked.java:183)
+	at org.osgi.util.tracker.ServiceTracker.open(ServiceTracker.java:318)
+	at org.osgi.util.tracker.ServiceTracker.open(ServiceTracker.java:261)
+	at org.eclipse.equinox.internal.p2.core.ProvisioningAgent.getService(ProvisioningAgent.java:66)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at org.springsource.ide.eclipse.commons.internal.core.net.P2TransportService.getTransport_e3_7(P2TransportService.java:80)
+	at org.springsource.ide.eclipse.commons.internal.core.net.P2TransportService.<init>(P2TransportService.java:52)
+	at org.springsource.ide.eclipse.commons.core.HttpUtil.getTransport(HttpUtil.java:151)
+	at org.springsource.ide.eclipse.commons.core.HttpUtil.stream(HttpUtil.java:165)
+	at org.springsource.ide.eclipse.dashboard.internal.ui.editors.AggregateFeedJob$1.run(AggregateFeedJob.java:145)
+	at java.lang.Thread.run(Thread.java:745)
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:26.450
+!MESSAGE upda(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:26.840
+!MESSAGE updat(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:36.828
+!MESSAGE update(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:37.145
+!MESSAGE updateU(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:37.302
+!MESSAGE updateUs(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:23:37.428
+!MESSAGE updateUse(String) [in UserResources [in [Working copy] UserResources.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:24:41.065
+!MESSAGE addPhoto(Photo)#2 [in PhotoResource [in [Working copy] PhotoResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:24:41.746
+!MESSAGE uPhoto(Photo) [in PhotoResource [in [Working copy] PhotoResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:24:41.962
+!MESSAGE updaPhoto(Photo) [in PhotoResource [in [Working copy] PhotoResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 11:24:42.128
+!MESSAGE updatPhoto(Photo) [in PhotoResource [in [Working copy] PhotoResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:12:13.908
+!MESSAGE import com.sensoryex.backend.model.Photo [in <import container> [in [Working copy] CommentService.java [in com.sensoryex.backend.service [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:14:53.376
+!MESSAGE findByUser(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:14:55.302
+!MESSAGE findByUserN(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:14:55.419
+!MESSAGE findByUserNa(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:14:55.828
+!MESSAGE findByUserNam(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:15:57.983
+!MESSAGE findByUserName(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:03.536
+!MESSAGE find(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:06.043
+!MESSAGE findB(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:18.497
+!MESSAGE findBy(User) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:21.410
+!MESSAGE findBy() [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:27.412
+!MESSAGE findBy(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:30.387
+!MESSAGE find(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:30.702
+!MESSAGE findB(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:32.628
+!MESSAGE findBy(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:32.938
+!MESSAGE findByU(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.075
+!MESSAGE findByUs(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.176
+!MESSAGE findByUse(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.423
+!MESSAGE findByUser(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.540
+!MESSAGE findByUsern(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.689
+!MESSAGE findByUserna(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:33.773
+!MESSAGE findByUsernam(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:36.450
+!MESSAGE findByUsername(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:36.623
+!MESSAGE findByUserN(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:36.757
+!MESSAGE findByUserNa(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:36.840
+!MESSAGE findByUserNam(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:41.592
+!MESSAGE findBy(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:42.157
+!MESSAGE findByP(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:43.791
+!MESSAGE findByPh(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:43.934
+!MESSAGE findByPho(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:44.033
+!MESSAGE findByPhot(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:44.670
+!MESSAGE findByPhoto(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:44.933
+!MESSAGE findByPhotoI(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:50.435
+!MESSAGE findByPhotoId(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:16:52.685
+!MESSAGE findByPhotoId() [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:17:43.122
+!MESSAGE findByPhotoId() [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:00.047
+!MESSAGE findById(Long) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:00.781
+!MESSAGE findByUId(Long) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:00.946
+!MESSAGE findByUsId(Long) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:01.130
+!MESSAGE findByUseId(Long) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:17.287
+!MESSAGE findByUserId(Long)#2 [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:28.254
+!MESSAGE findByUserId(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:28.497
+!MESSAGE findByUserN(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:28.613
+!MESSAGE findByUserNa(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:28.697
+!MESSAGE findByUserNam(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:32.508
+!MESSAGE findByUserName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:38.250
+!MESSAGE findByUseddrName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:38.384
+!MESSAGE findByUseeName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:18:43.030
+!MESSAGE findByUseName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:20:07.640
+!MESSAGE findByUserName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:20:11.500
+!MESSAGE findByuserName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:20:31.461
+!MESSAGE findByuserName(String) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:21:25.459
+!MESSAGE List [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:21:36.171
+!MESSAGE findOne() [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:21:37.434
+!MESSAGE findOne(Long) [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:21:38.020
+!MESSAGE findOne() [in CommentDao [in [Working copy] CommentDao.java [in com.sensoryex.backend.dao [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:23:59.570
+!MESSAGE findo(Long) [in CommentServiceImpl [in [Working copy] CommentServiceImpl.java [in com.sensoryex.backend.service.impl [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:23:59.639
+!MESSAGE findon(Long) [in CommentServiceImpl [in [Working copy] CommentServiceImpl.java [in com.sensoryex.backend.service.impl [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:25:58.977
+!MESSAGE userDao [in CommentServiceImpl [in [Working copy] CommentServiceImpl.java [in com.sensoryex.backend.service.impl [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:47:50.916
+!MESSAGE findne(Long) [in CommentServiceImpl [in [Working copy] CommentServiceImpl.java [in com.sensoryex.backend.service.impl [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:37.446
+!MESSAGE addComment(Comment)#2 [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:41.647
+!MESSAGE get(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:41.998
+!MESSAGE getCO(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:43.112
+!MESSAGE getCOm(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:43.387
+!MESSAGE getCo(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:43.567
+!MESSAGE getCom(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:44.228
+!MESSAGE getComm(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:44.399
+!MESSAGE getComme(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:44.546
+!MESSAGE getCommen(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:44.829
+!MESSAGE getComment(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:46.068
+!MESSAGE getComments(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:46.396
+!MESSAGE getCommentsB(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:48.494
+!MESSAGE getCommentsBy(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:48.804
+!MESSAGE getCommentsByP(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:49.088
+!MESSAGE getCommentsByPh(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:49.256
+!MESSAGE getCommentsByPho(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:49.371
+!MESSAGE getCommentsByPhot(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:49.744
+!MESSAGE getCommentsByPhoto(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:50.022
+!MESSAGE getCommentsByPhotoI(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 14:52:56.520
+!MESSAGE getCommentsByPhotoId(Comment) [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist
+
+!ENTRY org.eclipse.jdt.core 4 969 2016-07-28 16:55:19.820
+!MESSAGE commentService#2 [in CommentResource [in [Working copy] CommentResource.java [in com.sensoryex.backend.controller [in src/main/java [in lagoon]]]]] does not exist

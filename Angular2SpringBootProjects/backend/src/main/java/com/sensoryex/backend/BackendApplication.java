@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sensoryex.backend.config.JwtFilter;
 
@@ -19,6 +20,8 @@ public class BackendApplication {
 		
 		return registrationBean;
 	}
+	
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);

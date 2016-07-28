@@ -19,6 +19,11 @@ var UserService = (function () {
         var header = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
         return this.http.post(url, username, { headers: header });
     };
+    UserService.prototype.updateUser = function (user) {
+        var url = "http://localhost:8080/rest/user/update";
+        var header = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+        return this.http.post(url, JSON.stringify(user), { headers: header });
+    };
     UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])

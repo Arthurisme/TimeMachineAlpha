@@ -24,6 +24,8 @@ public class Comment {
 	
 	private Long photoId;
 	private String userName;
+	
+	
 	public Long getCommentId() {
 		return commentId;
 	}

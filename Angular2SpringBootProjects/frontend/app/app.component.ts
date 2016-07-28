@@ -18,6 +18,7 @@ import {PhotoService} from "./services/photo.service";
 import {AddPhotoService} from "./services/add-photo.service";
 import {UploadPhotoService} from "./services/upload-photo.service";
 import {AddPhoto} from "./components/add-photo.component";
+import {ImageDetail} from "./components/image-detail.component";
 
 
 
@@ -41,7 +42,8 @@ import {AddPhoto} from "./components/add-photo.component";
     {path:'/register',name:'Register',component:Register},
     {path:'/login',name:'Login',component:Login},
     {path:'/my-album',name:'MyAlbum',component:MyAlbum},
-    {path:'/add-photo',name:'AddPhoto',component:AddPhoto},
+    {path:'/image-detail/:id', name:'ImageDetail', component: ImageDetail},
+    {path:'/add-photo',name:'AddPhoto',component:AddPhoto}
 ])
 
 export class AppComponent { }

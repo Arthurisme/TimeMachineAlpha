@@ -65,46 +65,23 @@ public class PhotoResource {
 		return	photoService.save(photo);
 		}
 	
+	@RequestMapping(value="/photo/update", method=RequestMethod.POST)
+	public Photo updatePhoto(@RequestBody Photo photo){
+		Photo currentPhoto = photoService.findByPhotoId(photo.getPhotoId());
+		currentPhoto.setLikes(photo.getLikes());
+		return	photoService.save(currentPhoto);
+		}
+	
 	
 	@RequestMapping(value="/photo/user", method=RequestMethod.POST)
 	public List<Photo> getPhotosByUser(@RequestBody User user){
 			return	photoService.findByUser(user) ;
 		}
+	
+	@RequestMapping(value="/photo/photoId", method = RequestMethod.POST)
+	public Photo getPhotoByPhotoId(@RequestBody Long photoId) {
+		return photoService.findByPhotoId(photoId);
+	}
 
-//	
-//	@Autowired
-//	private PhotoService photoService;
-//	
-//	@RequestMapping(value="/photo/upload", method=RequestMethod.POST)
-//	public String upload (HttpServletResponse response, HttpServletRequest request){
-//		
-//	    
-//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-//
-//		Iterator<String> it = multipartRequest.getFileNames();
-//
-// 	        
-//			MultipartFile multipartFile = multipartRequest.getFile(it.next());
-//
-//			String fileName = multipartFile.getOriginalFilename();
-//
-//			String path= new File("src/main/resources/static/images").getAbsolutePath()+"\\"+fileName;
-//
-//
-// 
-//	            try{
-//	                multipartFile.transferTo(new File(path));
-//
-//	            }catch(Exception e){
-//	                e.printStackTrace();
-//	                throw new RuntimeException("Product image saving failed", e);
-//	            }
-//	       
-//
-// 	        
-//	        
-//		return "Upload Image Success!";
-//	}
-//	
-//	
+
 }
