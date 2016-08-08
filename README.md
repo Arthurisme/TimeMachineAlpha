@@ -1,7 +1,8 @@
 # TimeMachineAlpha
 A time-duty-item planning system for all family members to share their progress in plan, shopping, recreation,study and more. The same function can use both in Mobile, Desktop, Web part, and
 as well as using in a 3d VR game App.  
-A starter will be push as isomorphic-mobile-web-vr-game.
+A starter will be push as: [isomorphic-mobile-web-vr-game](https://github.com/Arthurisme/isomorphic-mobile-web-vr-game)   
+
 
 ## isomorphic
 A isomorphic Mobile|Web system that share same data source and codes structure for Backend, Front-end and Mobile app.  
