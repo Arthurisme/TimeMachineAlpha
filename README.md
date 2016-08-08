@@ -69,12 +69,12 @@ npm start (to start the Web application)
 
 
 
-# About Unreal engine :
+## About Unreal engine :
 Unreal engine is free to use, but you must pay a royalty equal to 5% of all worldwide gross if you have gross revenue more than $3000 per 3 months , see:  https://www.unrealengine.com/eula
 ###The projects implementation using Unreal engine: all codes under /Game-VR-Unreal.  
 If you want to use Unreal engine based on per seat price without royalty, you need to contact with Unreal youself.
 If you want to me to develope VR function for web and mobile based on this repository, you don't need to pay Unreal again, Because I will paid by per seat as a commercial developer.
 
 
-# License
+## License
 MIT License.
