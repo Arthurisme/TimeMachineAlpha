@@ -1,9 +1,0 @@
-package com.sensoryex.backend.service;
-
-import com.sensoryex.backend.model.User;
-
-public interface UserService {
-
-	User sava(User user);
-	
-}

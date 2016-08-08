@@ -1,5 +1,0 @@
-package com.sensoryex.backend.config;
-
-public class CorsConfig {
-
-}

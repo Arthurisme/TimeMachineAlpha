@@ -1,0 +1,6 @@
+/RESE
+/node_modules
+*.log
+*.log.*
+/build
+/typings/globals/**

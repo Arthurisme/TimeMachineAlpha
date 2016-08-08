@@ -1,0 +1,28 @@
+<div class="photo-list">
+    <div *ngFor="let photo of photos">
+
+        <div class="ui grid">
+            <div class="two wide column">
+            </div>
+
+            <div class="fourteen wide column">
+                <div class="ui raised segment">
+                    <img src="http://localhost:8080/images/{{photo.imageName}}" class="ui big image centered"
+                             (click)="onSelect(photo)" style="cursor:pointer">
+                        <div class="ui grid">
+                            <div class="twelve wide column left aligned">
+                                <strong>{{photo.title}}</strong>
+                                <br>
+                                {{photo.description}}
+                            </div>
+                            <div class="four wide column right aligned">
+                                {{photo.likes}}likes
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
