@@ -43,8 +43,10 @@ So I plan to have a Grails 3.x  backend implementation using  Angular 2 scaffold
 │   └── unreal    ----------VR implementation use Unreal engine.   
 ├── MobileApp  
 │   ├── NativeScript--------Mobile app implementation use NativeScript 2 framework with Angular 2.  
-│   └── ionic       --------Mobile app implementation use ionic 2 framework with Angular 2.  
-├── README.md  
+│   └── ionic       --------Mobile app implementation use ionic 2 framework with Angular 2.
+├── DesktopApp  
+│   └── Electron------------Desktop application implementation use Electron framework with Angular 2.  
+└── README.md  
 ```
 
 
