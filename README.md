@@ -23,6 +23,8 @@ About Grails and Griffon implementation: I heard some news  from Grails framew
 Currently Grails already have AngularJS 1.0 Scaffolding command and Json view plugin.
 So I plan to have a Grails 3.x  backend implementation using  Angular 2 scaffolding, Json view, and rest-api.
 
+![alt tag](http://url/to/img.png)
+
 ## File Structure:
 ```
 ├── Backend  
