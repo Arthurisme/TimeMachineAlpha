@@ -1,7 +1,6 @@
-/RESE
-/Frontend/QuickStart/node_modules
-/node_modules
-*.log
-*.log.*
-/build
-/typings/globals/**
+  
+**/node_modules/
+**/platforms/
+**/typings/
+
+ 
