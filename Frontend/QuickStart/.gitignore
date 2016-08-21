@@ -1,5 +1,6 @@
-/node_modules
-*.log
-*.log.*
-/build
-/typings/globals/**
+  
+node_modules/
+platforms/
+typings/
+
+ 
