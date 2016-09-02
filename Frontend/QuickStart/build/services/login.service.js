@@ -19,6 +19,7 @@ var LoginService = (function () {
         var headers1 = new http_1.Headers({ 'Content-Type': 'application/json' });
         return this.http.post(tokenUrl, JSON.stringify(model), { headers: headers1 });
     };
+    // check if downloaded token same with server:
     LoginService.prototype.sendToken = function (token) {
         var userUrl = "http://localhost:8080/rest/user/users";
         var headers2 = new http_1.Headers({ 'Authorization': 'Bearer ' + token });

@@ -19,4 +19,9 @@ public class PhotoController {
 	public List<Photo> getAllPhotos() {
 		return photoService.findAll();
 	}
+
+	@RequestMapping("/allPhotosTest")
+	public String getAllPhotosTest() {
+		return "9999";
+	}
 }

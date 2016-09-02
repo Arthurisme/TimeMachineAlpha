@@ -46,6 +46,7 @@ public class PhotoServiceImpl implements PhotoService {
 
 	public  List<Photo> findAll( )
 {
+//	return (List<Photo>) photoDao.findAll();
  		return photoDao.findAll( );
 
 	}

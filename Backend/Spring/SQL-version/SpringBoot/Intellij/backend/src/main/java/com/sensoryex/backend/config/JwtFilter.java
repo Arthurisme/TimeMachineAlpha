@@ -10,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.filter.GenericFilterBean;
 
 import io.jsonwebtoken.Claims;
@@ -30,6 +31,9 @@ public class JwtFilter extends GenericFilterBean{
 	
 	private static final Logger log = LoggerFactory.getLogger(JwtFilter.class);
 
+	@Autowired
+	private TokenHandlerService tokenHandlerService;
+
 	
     public void doFilter(final ServletRequest req,
                          final ServletResponse res,
@@ -46,7 +50,7 @@ public class JwtFilter extends GenericFilterBean{
         } else {
         	
         	if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-        		log.error("test authHeader 201607251312: "+authHeader);
+        		log.error("token error 201607251312: "+authHeader);
 
         		throw new ServletException ("Missing or invalid Authorization header");
         	}
@@ -54,6 +58,7 @@ public class JwtFilter extends GenericFilterBean{
         	final String token = authHeader.substring(7);
         	
         	try {
+
         		final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
         		request.setAttribute("claims", claims);
         	} catch (final SignatureException e) {

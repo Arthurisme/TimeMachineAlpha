@@ -10,10 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var login_service_1 = require("../services/login.service");
+var router_deprecated_1 = require('@angular/router-deprecated');
 var Login = (function () {
-    function Login(loginService) {
+    function Login(loginService, router) {
         this.loginService = loginService;
+        this.router = router;
         this.model = { 'username': '', 'password': '' };
+        this.error = false;
     }
     Login.prototype.onSubmit = function () {
         var _this = this;
@@ -24,7 +27,14 @@ var Login = (function () {
                 localStorage.setItem("currentUserName", _this.model.username);
                 _this.model.username = "";
                 _this.model.password = "";
+                //for future version:
+                // this.router.parent.navigateByUrl('/');
             });
+        }, function (err) {
+            _this.err = err.status;
+            _this.errBody = err._body;
+            _this.body = err._body;
+            _this.error = true;
         });
     };
     Login = __decorate([
@@ -32,7 +42,7 @@ var Login = (function () {
             selector: 'login',
             templateUrl: "app/components/login.component.html"
         }), 
-        __metadata('design:paramtypes', [login_service_1.LoginService])
+        __metadata('design:paramtypes', [login_service_1.LoginService, router_deprecated_1.Router])
     ], Login);
     return Login;
 }());

@@ -17,6 +17,10 @@ import {UserService} from "./services/user.service";
 import {PhotoService} from "./services/photo.service";
 import {AddPhotoService} from "./services/add-photo.service";
 import {UploadPhotoService} from "./services/upload-photo.service";
+
+import {ApiTestService} from "./services/apitest.service";
+
+
 import {AddPhoto} from "./components/add-photo.component";
 import {ImageDetail} from "./components/image-detail.component";
 
@@ -30,7 +34,7 @@ import {ImageDetail} from "./components/image-detail.component";
     selector: 'my-app',
     directives:[NavBar,HomeComponent,MyAlbum,ROUTER_DIRECTIVES,Login],
     providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService,LoginService,UserService,PhotoService,
-        AddPhotoService,UploadPhotoService],
+        AddPhotoService,UploadPhotoService,ApiTestService],
     template: `
     <nav-bar></nav-bar>
     <router-outlet></router-outlet>

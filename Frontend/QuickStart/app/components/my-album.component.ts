@@ -33,6 +33,7 @@ export class MyAlbum {
                 this.photoService.getPhotosByUser(this.user).subscribe(
                     photos => {
                         this.photos =  JSON.parse(JSON.parse(JSON.stringify(photos))._body) ;
+
                         console.log("test photos list in front end: "+ this.photos);
                     }
                 ),

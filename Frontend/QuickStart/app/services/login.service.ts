@@ -14,6 +14,7 @@ export class LoginService {
         return this.http.post(tokenUrl, JSON.stringify(model), {headers: headers1});
     }
 
+    // check if downloaded token same with server:
     sendToken (token) {
         let userUrl = "http://localhost:8080/rest/user/users";
         let headers2 = new Headers({'Authorization': 'Bearer '+token});

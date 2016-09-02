@@ -8,16 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sensoryex.backend.config.JwtFilter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SpringBootApplication
 public class BackendApplication {
-	
-	
+
+	private static final Logger log = LoggerFactory.getLogger(BackendApplication.class);
+
+
+
 	@Bean
 	public FilterRegistrationBean jwtFilter(){
 		final FilterRegistrationBean registrationBean =new FilterRegistrationBean();
 		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/rest/*");
-		
+		registrationBean.addUrlPatterns("/rest/*", "/api/*");
+//		registrationBean.addUrlPatterns("/rest/*" );
+
+
 		return registrationBean;
 	}
 	
