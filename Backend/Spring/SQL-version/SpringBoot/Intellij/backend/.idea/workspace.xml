@@ -112,8 +112,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/sensoryex/backend/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+            <state relative-caret-position="131">
+              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -779,7 +779,7 @@
     <property name="project.structure.side.proportion" value="0.60553277" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../versions/angular-security/angular-security-rest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../versions/preparation/angular-security/angular-security-rest" />
     <property name="js-jscs-nodeInterpreter" value="$USER_HOME$/.nvm/versions/node/v5.8.0/bin/node" />
   </component>
   <component name="RecentsManager">
@@ -1253,7 +1253,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59146000" />
+    <option name="totallyTimeSpent" value="59356000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2339" y="220" width="1412" height="964" extended-state="0" />
@@ -1843,8 +1843,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sensoryex/backend/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="46" column="43" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+        <state relative-caret-position="131">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
           <folding />
         </state>
       </provider>
