@@ -196,8 +196,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1938" />
-    <option name="y" value="82" />
+    <option name="x" value="2098" />
+    <option name="y" value="597" />
     <option name="width" value="1449" />
     <option name="height" value="1011" />
   </component>
@@ -422,15 +422,15 @@
       <workItem from="1472742835763" duration="11523000" />
       <workItem from="1472913200015" duration="595000" />
       <workItem from="1472914366846" duration="7108000" />
-      <workItem from="1472944116363" duration="6168000" />
+      <workItem from="1472944116363" duration="6499000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119392000" />
+    <option name="totallyTimeSpent" value="119723000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1938" y="82" width="1449" height="1011" extended-state="0" />
+    <frame x="2098" y="597" width="1449" height="1011" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3057325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -690,7 +690,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="2" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="2" />
           <folding>
-            <element signature="e#0#62#0" expanded="true" />
+            <element signature="e#0#62#0" expanded="false" />
           </folding>
         </state>
       </provider>
