@@ -39,7 +39,7 @@ public class Application {
 //				addUser("admin2", "admin2");
 //				addUser("user2", "user2");
 				// Add some employees
-				employeeRepository.save(Arrays.asList(new Employee("John", "Doe", 23), new Employee("Jane", "Doe", 23)));
+//				employeeRepository.save(Arrays.asList(new Employee("John", "Doe", 23), new Employee("Jane", "Doe", 23)));
 			}
 
 			private void addUser(String username, String password) {

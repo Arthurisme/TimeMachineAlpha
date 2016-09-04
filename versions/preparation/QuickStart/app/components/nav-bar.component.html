@@ -13,6 +13,9 @@
         <a *ngIf="loginService.checkLogin()" class="item" [routerLink]="['MyAlbum']">
             My Album
         </a>
+        <a *ngIf="loginService.checkLogin()" class="item" [routerLink]="['Employee']">
+            Employees
+        </a>
     </div>
     <div class="right menu">
         <a class="item" [routerLink]="['Register']">

@@ -23,6 +23,8 @@ import {ApiTestService} from "./services/apitest.service";
 
 import {AddPhoto} from "./components/add-photo.component";
 import {ImageDetail} from "./components/image-detail.component";
+import {Employee} from "./components/employee.component";
+import {EmployeeService} from "./services/employee.service";
 
 
 
@@ -33,7 +35,7 @@ import {ImageDetail} from "./components/image-detail.component";
 @Component({
     selector: 'my-app',
     directives:[NavBar,HomeComponent,MyAlbum,ROUTER_DIRECTIVES,Login],
-    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService,LoginService,UserService,PhotoService,
+    providers:[ROUTER_PROVIDERS,HTTP_PROVIDERS,RegisterService,LoginService,UserService,EmployeeService,PhotoService,
         AddPhotoService,UploadPhotoService,ApiTestService],
     template: `
     <nav-bar></nav-bar>
@@ -47,7 +49,8 @@ import {ImageDetail} from "./components/image-detail.component";
     {path:'/login',name:'Login',component:Login},
     {path:'/my-album',name:'MyAlbum',component:MyAlbum},
     {path:'/image-detail/:id', name:'ImageDetail', component: ImageDetail},
-    {path:'/add-photo',name:'AddPhoto',component:AddPhoto}
+    {path:'/add-photo',name:'AddPhoto',component:AddPhoto},
+    {path:'/employees',name:'Employee',component:Employee}
 ])
 
 export class AppComponent { }

@@ -44,4 +44,4 @@ exports.RegisterService = RegisterService;
 //         return this.http.post(url, JSON.stringify(user), {headers: header});
 //     }
 // } 
-//# sourceMappingURL=register.service.js.map
+//# sourceMappingURL=employees.service.js.map

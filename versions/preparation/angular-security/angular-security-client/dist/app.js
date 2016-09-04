@@ -126,6 +126,7 @@
                     $scope.token = headers('Authorization');
                     // Saves token to local storage and redirects to "employees" page
                     store.set('jwt_token', headers('Authorization'));
+                    console.log(headers('Authorization'));
                     $location.path('/employees');
                 });
             };

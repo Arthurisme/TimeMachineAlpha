@@ -26,6 +26,8 @@ var upload_photo_service_1 = require("./services/upload-photo.service");
 var apitest_service_1 = require("./services/apitest.service");
 var add_photo_component_1 = require("./components/add-photo.component");
 var image_detail_component_1 = require("./components/image-detail.component");
+var employee_component_1 = require("./components/employee.component");
+var employee_service_1 = require("./services/employee.service");
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -33,7 +35,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             directives: [nav_bar_component_1.NavBar, home_component_1.HomeComponent, my_album_component_1.MyAlbum, router_deprecated_1.ROUTER_DIRECTIVES, login_component_1.Login],
-            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, register_service_1.RegisterService, login_service_1.LoginService, user_service_1.UserService, photo_service_1.PhotoService,
+            providers: [router_deprecated_2.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, register_service_1.RegisterService, login_service_1.LoginService, user_service_1.UserService, employee_service_1.EmployeeService, photo_service_1.PhotoService,
                 add_photo_service_1.AddPhotoService, upload_photo_service_1.UploadPhotoService, apitest_service_1.ApiTestService],
             template: "\n    <nav-bar></nav-bar>\n    <router-outlet></router-outlet>\n    "
         }),
@@ -43,7 +45,8 @@ var AppComponent = (function () {
             { path: '/login', name: 'Login', component: login_component_1.Login },
             { path: '/my-album', name: 'MyAlbum', component: my_album_component_1.MyAlbum },
             { path: '/image-detail/:id', name: 'ImageDetail', component: image_detail_component_1.ImageDetail },
-            { path: '/add-photo', name: 'AddPhoto', component: add_photo_component_1.AddPhoto }
+            { path: '/add-photo', name: 'AddPhoto', component: add_photo_component_1.AddPhoto },
+            { path: '/employees', name: 'Employee', component: employee_component_1.Employee }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

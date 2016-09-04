@@ -10,23 +10,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-var RegisterService = (function () {
-    function RegisterService(http) {
+var EmployeeService = (function () {
+    function EmployeeService(http) {
         this.http = http;
     }
-    RegisterService.prototype.sendUser = function (user) {
-        var url = "http://localhost:8080/api/users/registration";
-        var header = new http_1.Headers({ 'Content-Type': 'application/json' });
-        console.log("201609031722: " + JSON.stringify(user));
-        return this.http.post(url, JSON.stringify(user), { headers: header });
+    EmployeeService.prototype.findAll = function () {
+        var userUrl = "http://localhost:8080/admin/employee/all";
+        // let headers2 = new Headers({'Authorization': 'Bearer '+token});
+        // let headers2 = new Headers({'Authorization': 'Bearer '+token});
+        // let header2 = new Headers({'Content-Type': 'application/json', 'Authorization':'Bearer '+localStorage.getItem("token")});
+        var header = new http_1.Headers({ 'Authorization': localStorage.getItem("token") });
+        return this.http.get(userUrl, { headers: header });
+        // return this.http.get(userUrl);
     };
-    RegisterService = __decorate([
+    EmployeeService.prototype.save = function (employee) {
+        var url = "http://localhost:8080/admin/employee/save";
+        var header = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': localStorage.getItem("token") });
+        console.log("201609031722: " + JSON.stringify(employee));
+        return this.http.post(url, JSON.stringify(employee), { headers: header });
+    };
+    EmployeeService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], RegisterService);
-    return RegisterService;
+    ], EmployeeService);
+    return EmployeeService;
 }());
-exports.RegisterService = RegisterService;
+exports.EmployeeService = EmployeeService;
 // import {Injectable} from '@angular/core';
 // import {Http,Headers} from '@angular/http';
 // import {User} from '../models/User';
@@ -44,4 +53,4 @@ exports.RegisterService = RegisterService;
 //         return this.http.post(url, JSON.stringify(user), {headers: header});
 //     }
 // } 
-//# sourceMappingURL=register.service.js.map
+//# sourceMappingURL=employee.service.js.map

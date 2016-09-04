@@ -7,19 +7,19 @@
     <div class="fourteen wide column">
         <div class="ui raise segment">
             <form  *ngIf="!registered"  class="ui form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
-                <h2 class="ui dividing header">Register User</h2>
+                <h2 class="ui dividing header">New Employee</h2>
 
                 <div class="field">
                     <label>* Username/Password</label>
                     <div class="three fields">
                         <div class="field">
-                            <input type="text" name="userName" placeholder="User Name" [(ngModel)]="newUser.username" required />
+                            <input type="text" name="firstName" placeholder="First name" [(ngModel)]="newEmployee.firstName" required />
                         </div>
                         <div class="field">
-                            <input type="password" name="password" placeholder="Password" [(ngModel)]="newUser.password" required />
+                            <input type="text" name="lastName" placeholder="Last name" [(ngModel)]="newEmployee.lastName" required />
                         </div>
                         <div class="field">
-                            <input type="password" name="password" placeholder="Password Again" required />
+                            <input type="text" name="age" placeholder="Age" [(ngModel)]="newEmployee.age" required />
                         </div>
                     </div>
                 </div>
@@ -28,16 +28,43 @@
             </form>
 
              <!--Test:-->
-            {{newUser.userName}}
-            {{newUser.firstName}}
-            {{newUser.lastName}}
-            {{newUser.password}}
+            <!--{{newUser.userName}}-->
+            <!--{{newUser.firstName}}-->
+            <!--{{newUser.lastName}}-->
+            <!--{{newUser.password}}-->
 
-            <div *ngIf="registered">
-                Register success!
-            </div>
+            <!--<div *ngIf="registered">-->
+                <!--Register success!-->
+            <!--</div>-->
 
         </div>
+
+
+
+
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Employees</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Age</th>
+                        </tr>
+                        <tr *ngFor="let employee of employees">
+                            <td>{{employee.firstName}}</td>
+                            <td>{{employee.lastName}}</td>
+                            <td>{{employee.age}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </div>
